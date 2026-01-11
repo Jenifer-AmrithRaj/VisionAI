@@ -2,6 +2,8 @@
 File: utils/xai_utils.py
 Purpose: Robust XAI helpers for VisionAI (GradCAM, LIME, SHAP)
 """
+import os
+os.environ["MPLCONFIGDIR"] = "/tmp"
 
 import os
 import traceback
@@ -10,9 +12,7 @@ import numpy as np
 from PIL import Image
 import torch
 from torchvision import transforms
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+
 
 # Optional imports
 try:
@@ -179,6 +179,10 @@ def generate_lime_image(model, img_path, save_path):
 # ✅ SHAP — FIXED & STABLE
 # ---------------------------------------------------------
 def generate_shap_plot(model, metadata, save_path):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    
     """
     Correct SHAP implementation:
     - Uses TreeExplainer for RF/XGB
