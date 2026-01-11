@@ -542,14 +542,13 @@ def get_system_stats():
 # RUN APP
 # ---------------------------------------------------------------------
 if __name__ == "__main__":
-    print("🌐 VisionAI server running at http://127.0.0.1:5000")
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    print(f"🌐 VisionAI server running on port {port}")
     app.run(
-        host="127.0.0.1",
-        port=5000,
-        debug=True,
-        use_reloader=False,
-        threaded=True
+        host="0.0.0.0",
+        port=port,
+        debug=False
     )
-
 
 
