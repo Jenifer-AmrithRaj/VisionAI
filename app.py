@@ -34,6 +34,51 @@ from utils.logger import log_event
 from utils.helper import log_patient_record
 from utils.auth_utils import validate_user
 
+def run_full_pipeline(uid, img_path, meta):
+    try:
+        print("🧠 Running ML in background...")
+
+        # CPU only
+        cnn_probs = np.ones(5) / 5
+        cnn_pred = "UNKNOWN"
+        cnn_conf = 0.5
+
+        ml_models = {
+            "rf": joblib.load("modelss/randomforest_model.pkl"),
+            "xgb": joblib.load("modelss/xgboost_model.pkl"),
+            "ensemble": joblib.load("modelss/ensemble_model_strong.pkl"),
+        }
+        scaler = joblib.load("modelss/scaler.pkl")
+
+        numeric_meta = {
+            k: v for k, v in meta.items()
+            if str(v).replace(".", "", 1).isdigit()
+        }
+
+        _, ml_avg = predict_metadata_ml(numeric_meta, ml_models, scaler)
+
+        fused, label, conf, risk = fuse_predictions(
+            cnn_probs, np.array(ml_avg)
+        )
+
+        summary = {
+            "uid": uid,
+            "metadata": meta,
+            "prediction": {
+                "predicted_stage": label,
+                "confidence": round(conf * 100, 2),
+                "risk_score": round(risk * 100, 2),
+            },
+            "generated_at": datetime.now(timezone.utc).isoformat()
+        }
+
+        with open(os.path.join(EXPLAIN_DIR, f"{uid}_xai_summary.json"), "w") as f:
+            json.dump(summary, f, indent=2)
+
+        print("✅ Background ML finished")
+
+    except Exception as e:
+        print("❌ Background ML failed:", e)
 
 # ---------------------------------------------------------------------
 # Flask Setup
@@ -252,177 +297,24 @@ def upload_page():
 # ---------------------------------------------------------------------
 @app.route("/predict", methods=["POST"])
 def predict():
-    models = get_models()
-    cnn_models = models["cnn"]
-    ml_models = models["ml"]
-    scaler = models["scaler"]
-
     file = request.files.get("fundus_image")
     if not file:
-        flash("No image uploaded!", "error")
         return redirect(url_for("upload_page"))
 
     uid = str(uuid.uuid4())[:8]
     img_path = os.path.join(UPLOAD_DIR, f"{uid}.png")
     file.save(img_path)
 
-    # Collect metadata safely
-    meta = {k: request.form.get(k, "") for k in [
-        "Full_Name", "Age", "Gender", "Systolic", "Diastolic",
-        "Glucose_Level", "BMI", "Duration", "Smoking", "Hypertension",
-        "Family_History", "Cholesterol", "HbA1c", "Insulin_Use",
-        "Physical_Activity", "Medication"
-    ]}
+    meta = dict(request.form)
 
-    # Preprocess image
-    processed_path = os.path.join(PROCESSED_DIR, f"{uid}_processed.png")
-    try:
-        preprocess_and_save(img_path, processed_path, size=(512, 512))
-    except Exception as e:
-        print("⚠️ Preprocessing failed:", e)
-        processed_path = ""
+    # Run ML in background
+    Thread(
+        target=run_full_pipeline,
+        args=(uid, img_path, meta),
+        daemon=True
+    ).start()
 
-    # CNN prediction
-    try:
-        cnn_probs, cnn_pred, cnn_conf = predict_cnn(
-            cnn_models, img_path, device=DEVICE
-        )
-    except Exception as e:
-        print("⚠️ CNN failed:", e)
-        cnn_probs = np.ones(5) / 5
-        cnn_pred, cnn_conf = "UNKNOWN", 0.2
-
-    # ML prediction
-    try:
-        numeric_meta = {
-            k: v for k, v in meta.items()
-            if str(v).replace('.', '', 1).isdigit()
-        }
-        _, ml_avg = predict_metadata_ml(
-            numeric_meta, ml_models, scaler
-        )
-        ml_probs_arr = np.array(ml_avg)
-    except Exception as e:
-        print("⚠️ ML failed:", e)
-        ml_probs_arr = np.ones(5) / 5
-
-    # Fuse CNN + ML
-    try:
-        fused, fused_label, fused_conf, risk_score = fuse_predictions(
-            cnn_probs, ml_probs_arr
-        )
-    except Exception as e:
-        print("⚠️ Fusion failed:", e)
-        fused, fused_label, fused_conf, risk_score = (
-            cnn_probs, cnn_pred, cnn_conf, 0.5
-        )
-
-    # Prepare XAI paths
-    gradcam_path = os.path.join(EXPLAIN_DIR, "gradcam", f"{uid}_gradcam.jpg")
-    lime_path = os.path.join(EXPLAIN_DIR, "lime", f"{uid}_lime.png")
-    shap_path = os.path.join(EXPLAIN_DIR, "shap", f"{uid}_shap.png")
-    for p in [gradcam_path, lime_path, shap_path]:
-        os.makedirs(os.path.dirname(p), exist_ok=True)
-
-    # ---------------------------------------------------------
-    # Background analysis (XAI + lesions + reports)
-    # ---------------------------------------------------------
-    def background_analysis():
-        try:
-            model = cnn_models.get("efficientnet")
-            print(f"🧠 Starting background analysis for UID {uid}...")
-
-            # ✅ HARD STOP FOR NO_DR
-            if fused_label == "NO_DR":
-                print(f"🟢 NO_DR detected — skipping XAI and lesion analysis")
-
-                lesion_stats = {}
-                gradcam_web = ""
-                lime_web = ""
-                shap_web = ""
-
-            else:
-                # -------- DR-POSITIVE PATH (UNCHANGED) --------
-                generate_gradcam_image(model, img_path, gradcam_path)
-                generate_lime_image(model, img_path, lime_path)
-
-                shap_model = ml_models.get("ensemble") or ml_models.get("rf")
-                generate_shap_plot(shap_model, meta, shap_path)
-
-                lesion_stats = calculate_lesion_stats(
-                    processed_path or img_path
-                )
-
-                gradcam_web = _copy_to_static(
-                    gradcam_path, uid, "gradcam"
-                )
-                lime_web = _copy_to_static(
-                    lime_path, uid, "lime"
-                )
-                shap_web = _copy_to_static(
-                    shap_path, uid, "shap"
-                )
-
-            model_metrics = {
-                "Accuracy": 0.947,
-                "F1-score": 0.938,
-                "AUC/ROC": 0.971
-            }
-
-            summary = {
-                "uid": uid,
-                "metadata": meta,
-                "prediction": {
-                    "predicted_stage": fused_label,
-                    "confidence": round(float(fused_conf) * 100, 2),
-                    "risk_score": round(
-                        1.0 if fused_label == "NO_DR"
-                        else float(risk_score) * 100,
-                        2
-                    ),
-                },
-                "probs": {
-                    "cnn": cnn_probs.tolist(),
-                    "ml": ml_probs_arr.tolist(),
-                    "fused": fused.tolist(),
-                },
-                "lesion_stats": lesion_stats,
-                "images": {
-                    "original": os.path.relpath(img_path, BASE_DIR),
-                    "processed": os.path.relpath(
-                        processed_path, BASE_DIR
-                    ) if processed_path else "",
-                    "gradcam": gradcam_web,
-                    "lime": lime_web,
-                    "shap": shap_web,
-                },
-                "model_metrics": model_metrics,
-                "generated_at": datetime.now(timezone.utc).isoformat(),
-            }
-
-            safe_json_save(
-                os.path.join(
-                    EXPLAIN_DIR, f"{uid}_xai_summary.json"
-                ),
-                summary
-            )
-
-            try:
-                generate_reports_for_uid(
-                    uid, language_mode="bilingual"
-                )
-            except Exception as e:
-                print(f"⚠️ Report generation failed: {e}")
-
-            log_patient_record(uid, meta, summary["prediction"])
-            print(f"✅ Background analysis completed for UID {uid}")
-
-        except Exception as e:
-            print("⚠️ Background analysis failed:", e)
-
-    Thread(target=background_analysis, daemon=True).start()
-
-    return redirect(url_for("result_page", uid=uid), code=302)
+    return redirect(url_for("result_page", uid=uid))
 
 @app.route("/result/<uid>")
 def result_page(uid):
@@ -561,5 +453,6 @@ if __name__ == "__main__":
         port=port,
         debug=False
     )
+
 
 
