@@ -57,26 +57,32 @@ print(f"🚀 Using device: {DEVICE}")
 
 
 # ---------------------------------------------------------------------
-# Model Loading
+# Lazy Model Cache (RENDER SAFE)
 # ---------------------------------------------------------------------
-try:
-    cnn_models = load_cnn_models(device=DEVICE)
-    print("✅ CNN models loaded successfully.")
-except Exception as e:
-    print("❌ CNN models failed to load:", e)
-    cnn_models = {}
+MODEL_CACHE = {
+    "cnn": None,
+    "ml": None,
+    "scaler": None
+}
 
-try:
-    ml_models = {
-        "rf": joblib.load(os.path.join("modelss", "randomforest_model.pkl")),
-        "xgb": joblib.load(os.path.join("modelss", "xgboost_model.pkl")),
-        "ensemble": joblib.load(os.path.join("modelss", "ensemble_model_strong.pkl")),
-    }
-    scaler = joblib.load(os.path.join("modelss", "scaler.pkl"))
-    print("✅ ML models + scaler loaded.")
-except Exception as e:
-    print("⚠️ ML models/scaler missing:", e)
-    ml_models, scaler = {}, None
+def get_models():
+    global MODEL_CACHE
+
+    if MODEL_CACHE["cnn"] is None:
+        print("🧠 Lazy-loading CNN models...")
+        MODEL_CACHE["cnn"] = load_cnn_models(device=DEVICE)
+
+    if MODEL_CACHE["ml"] is None:
+        print("🧠 Lazy-loading ML models...")
+        MODEL_CACHE["ml"] = {
+            "rf": joblib.load(os.path.join("modelss", "randomforest_model.pkl")),
+            "xgb": joblib.load(os.path.join("modelss", "xgboost_model.pkl")),
+            "ensemble": joblib.load(os.path.join("modelss", "ensemble_model_strong.pkl")),
+        }
+        MODEL_CACHE["scaler"] = joblib.load(os.path.join("modelss", "scaler.pkl"))
+
+    return MODEL_CACHE
+
 
 
 # ---------------------------------------------------------------------
@@ -246,6 +252,11 @@ def upload_page():
 # ---------------------------------------------------------------------
 @app.route("/predict", methods=["POST"])
 def predict():
+    models = get_models()
+    cnn_models = models["cnn"]
+    ml_models = models["ml"]
+    scaler = models["scaler"]
+
     file = request.files.get("fundus_image")
     if not file:
         flash("No image uploaded!", "error")
