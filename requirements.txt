@@ -1,39 +1,41 @@
 # ============================================================
 # VisionAI – Production Requirements (Render Safe)
-# Python 3.13 | CPU-only | No Jupyter
+# Python 3.13 | CPU-only
 # ============================================================
 
-# ---- PyTorch (CPU only, Python 3.13 compatible) ----
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.9.1+cpu
 torchvision==0.24.1+cpu
 torchaudio==2.9.1+cpu
 
-# ---- Core Scientific Stack ----
+# Model zoo (EfficientNet, ViT, ResNet helpers)
+timm>=0.9.12
+
+# Core
 numpy>=1.26
 pandas>=2.2
 scikit-learn>=1.4
 scipy>=1.11
 joblib>=1.3
 
-# ---- Image Processing ----
+# Image processing
 opencv-python>=4.9
 Pillow>=10.2
 scikit-image>=0.22
 
-# ---- Explainability ----
+# Explainability
 shap>=0.45
 
-# ---- Traditional ML ----
+# ML
 xgboost>=2.0
 
-# ---- Web Backend ----
+# Web
 Flask>=3.0
 Flask-Cors>=4.0
 gunicorn>=21.2
 
-# ---- System Monitoring ----
+# System
 psutil>=5.9
 
-# ---- PDF Generation ----
+# PDF
 reportlab>=4.0
