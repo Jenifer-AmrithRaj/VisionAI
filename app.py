@@ -307,14 +307,37 @@ def predict():
 
     meta = dict(request.form)
 
-    # Run ML in background
-    Thread(
-        target=run_full_pipeline,
-        args=(uid, img_path, meta),
-        daemon=True
-    ).start()
+    # ⚠️ Render-safe fallback prediction
+    summary = {
+        "uid": uid,
+        "metadata": meta,
+        "prediction": {
+            "predicted_stage": "ANALYSIS_PENDING",
+            "confidence": 0.0,
+            "risk_score": 0.0
+        },
+        "probs": {
+            "cnn": [],
+            "ml": [],
+            "fused": []
+        },
+        "lesion_stats": {},
+        "images": {
+            "original": img_path,
+            "processed": "",
+            "gradcam": "",
+            "lime": "",
+            "shap": ""
+        },
+        "generated_at": datetime.now(timezone.utc).isoformat()
+    }
+
+    os.makedirs(EXPLAIN_DIR, exist_ok=True)
+    with open(os.path.join(EXPLAIN_DIR, f"{uid}_xai_summary.json"), "w") as f:
+        json.dump(summary, f, indent=2)
 
     return redirect(url_for("result_page", uid=uid))
+
 
 @app.route("/result/<uid>")
 def result_page(uid):
