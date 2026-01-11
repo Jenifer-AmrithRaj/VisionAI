@@ -36,12 +36,12 @@ from utils.auth_utils import validate_user
 
 def run_full_pipeline(uid, img_path, meta):
     try:
-        print("🧠 Running ML in background...")
+        print("🧠 Background pipeline started", uid)
 
-        # CPU only
-        cnn_probs = np.ones(5) / 5
-        cnn_pred = "UNKNOWN"
-        cnn_conf = 0.5
+        DEVICE = "cpu"
+
+        # ---- Load models (ONCE inside thread) ----
+        cnn_models = load_cnn_models(device=DEVICE)
 
         ml_models = {
             "rf": joblib.load("modelss/randomforest_model.pkl"),
@@ -50,17 +50,45 @@ def run_full_pipeline(uid, img_path, meta):
         }
         scaler = joblib.load("modelss/scaler.pkl")
 
+        # ---- CNN ----
+        cnn_probs, cnn_pred, cnn_conf = predict_cnn(
+            cnn_models, img_path, device=DEVICE
+        )
+
+        # ---- ML ----
         numeric_meta = {
             k: v for k, v in meta.items()
             if str(v).replace(".", "", 1).isdigit()
         }
-
         _, ml_avg = predict_metadata_ml(numeric_meta, ml_models, scaler)
+        ml_probs = np.array(ml_avg)
 
-        fused, label, conf, risk = fuse_predictions(
-            cnn_probs, np.array(ml_avg)
-        )
+        # ---- Fusion ----
+        fused, label, conf, risk = fuse_predictions(cnn_probs, ml_probs)
 
+        # ---- XAI paths ----
+        gradcam_path = f"explainability/gradcam/{uid}.jpg"
+        lime_path = f"explainability/lime/{uid}.png"
+        shap_path = f"explainability/shap/{uid}.png"
+
+        os.makedirs(os.path.dirname(gradcam_path), exist_ok=True)
+        os.makedirs(os.path.dirname(lime_path), exist_ok=True)
+        os.makedirs(os.path.dirname(shap_path), exist_ok=True)
+
+        # ---- XAI (ONLY if not NO_DR) ----
+        if label != "NO_DR":
+            generate_gradcam_image(cnn_models["efficientnet"], img_path, gradcam_path)
+            generate_lime_image(cnn_models["efficientnet"], img_path, lime_path)
+            generate_shap_plot(
+                ml_models.get("ensemble") or ml_models["rf"],
+                meta,
+                shap_path
+            )
+            lesion_stats = calculate_lesion_stats(img_path)
+        else:
+            lesion_stats = {}
+
+        # ---- Save summary ----
         summary = {
             "uid": uid,
             "metadata": meta,
@@ -69,16 +97,30 @@ def run_full_pipeline(uid, img_path, meta):
                 "confidence": round(conf * 100, 2),
                 "risk_score": round(risk * 100, 2),
             },
+            "probs": {
+                "cnn": cnn_probs.tolist(),
+                "ml": ml_probs.tolist(),
+                "fused": fused.tolist(),
+            },
+            "lesion_stats": lesion_stats,
+            "images": {
+                "gradcam": gradcam_path if os.path.exists(gradcam_path) else "",
+                "lime": lime_path if os.path.exists(lime_path) else "",
+                "shap": shap_path if os.path.exists(shap_path) else "",
+            },
             "generated_at": datetime.now(timezone.utc).isoformat()
         }
 
-        with open(os.path.join(EXPLAIN_DIR, f"{uid}_xai_summary.json"), "w") as f:
+        with open(f"explainability/{uid}_xai_summary.json", "w") as f:
             json.dump(summary, f, indent=2)
 
-        print("✅ Background ML finished")
+        # ---- Reports ----
+        generate_reports_for_uid(uid, language_mode="bilingual")
+
+        print("✅ Background pipeline finished", uid)
 
     except Exception as e:
-        print("❌ Background ML failed:", e)
+        print("❌ Background pipeline failed:", e)
 
 # ---------------------------------------------------------------------
 # Flask Setup
