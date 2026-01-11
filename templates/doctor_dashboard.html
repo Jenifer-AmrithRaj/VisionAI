@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisionAI | Doctor Dashboard</title>
+
+  <!-- Bootstrap & Chart.js -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- PWA & Icons -->
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <link rel="icon" href="{{ url_for('static', filename='icons/icon-192x192.png') }}">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service_worker.js')
+        .then(() => console.log('✅ Service Worker Registered'))
+        .catch(err => console.log('❌ SW Failed:', err));
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at 20% 20%, #000814, #001233);
+      color: #e0f7ff;
+      overflow-x: hidden;
+    }
+    .navbar { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.1); box-shadow:0 2px 10px rgba(0,0,0,0.3); }
+    .dashboard-card { background: rgba(255,255,255,0.04); border-radius:16px; border:1px solid rgba(255,255,255,0.1); padding:1.5rem; margin-bottom:2rem; box-shadow:0 8px 25px rgba(0,0,0,0.25); transition: all 0.3s ease; }
+    h3 { color:#00b4d8; text-shadow:0 0 8px rgba(0,180,216,0.5); }
+    .chart-container { position:relative; height:320px; }
+    footer { text-align:center; padding:1rem; color:#aaa; background:rgba(255,255,255,0.03); border-top:1px solid rgba(255,255,255,0.05); margin-top:2rem; font-size:0.9rem; }
+    .btn-glow { background:linear-gradient(45deg, #00b4d8, #0077b6); border:none; color:#fff; border-radius:10px; padding:0.5rem 1.2rem; font-weight:600; box-shadow:0 0 10px rgba(0,180,216,0.4); }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+        <img src="{{ url_for('static', filename='visionai_logo.png') }}" alt="VisionAI Logo" style="height:40px;margin-right:8px;">
+        <span class="fw-bold text-info">VisionAI</span>
+      </a>
+      <div>
+        <a href="{{ url_for('home') }}" class="btn btn-outline-light btn-sm me-2">🏠 Home</a>
+        <a href="{{ url_for('upload_page') }}" class="btn btn-glow btn-sm">New Screening</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <h3 class="mb-4">👨‍⚕️ Doctor Dashboard — AI Performance & Patient Insights</h3>
+
+    <div class="dashboard-card">
+      <h5>📈 AI Confidence & Risk Trend</h5>
+      <div class="chart-container">
+        <canvas id="trendChart"></canvas>
+      </div>
+    </div>
+
+    <div class="dashboard-card">
+      <h5>🧠 Model Confidence Comparison</h5>
+      <div class="chart-container">
+        <canvas id="modelHealthChart"></canvas>
+      </div>
+    </div>
+
+    <div class="dashboard-card">
+      <h5>🧾 Recent Predictions</h5>
+      <table class="table table-dark table-hover table-borderless align-middle">
+        <thead>
+          <tr>
+            <th>UID</th><th>Patient</th><th>Age</th><th>Stage</th><th>Confidence (%)</th><th>Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if recent %}
+            {% for r in recent %}
+            <tr>
+              <td>{{ r.uid }}</td><td>{{ r.name }}</td><td>{{ r.age }}</td><td>{{ r.stage }}</td><td>{{ r.confidence }}</td><td>{{ r.risk }}</td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr><td colspan="6" class="text-center text-muted">No records available yet.</td></tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>© 2025 VisionAI — Clinical AI Dashboard for Ophthalmology Insights</footer>
+
+  <script>
+    const trendData = {{ trends | tojson }};
+    new Chart(document.getElementById('trendChart'), {
+      type: 'line',
+      data: {
+        labels: trendData.labels,
+        datasets: [
+          { label: 'Confidence (%)', data: trendData.confidence, borderColor: '#00b4d8', backgroundColor: 'rgba(0,180,216,0.2)', tension:0.4, fill:true },
+          { label: 'Risk Score', data: trendData.risk, borderColor: '#ff4d6d', backgroundColor: 'rgba(255,77,109,0.2)', tension:0.4, fill:true }
+        ]
+      },
+      options: { responsive:true, scales:{ y:{ beginAtZero:true } }, plugins:{ legend:{ labels:{ color:'#fff' } } } }
+    });
+
+    const health = {{ stats.health | tojson }};
+    new Chart(document.getElementById('modelHealthChart'), {
+      type: 'bar',
+      data: { labels: health.labels, datasets:[{ label:'Model Confidence (%)', data: health.data, backgroundColor: ['#00b4d8','#0077b6','#023e8a','#48cae4','#90e0ef'], borderRadius:10 }] },
+      options: { scales:{ y:{ beginAtZero:true } }, plugins:{ legend:{ display:false } } }
+    });
+  </script>
+</body>
+</html>

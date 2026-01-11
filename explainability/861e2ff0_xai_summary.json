@@ -1,0 +1,68 @@
+{
+  "uid": "861e2ff0",
+  "metadata": {
+    "Full_Name": "Jenifer",
+    "Age": "56",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "343",
+    "BMI": "30.8",
+    "Duration": "14",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 56.15,
+    "risk_score": 96.4
+  },
+  "probs": {
+    "cnn": [
+      0.007090386003255844,
+      0.030955396592617035,
+      0.33243080973625183,
+      0.6253359317779541,
+      0.0041874428279697895
+    ],
+    "ml": [
+      0.20000000000000004,
+      0.20000000000000004,
+      0.20000000000000004,
+      0.20000000000000004,
+      0.20000000000000004
+    ],
+    "fused": [
+      0.03602682819589973,
+      0.056312088593840605,
+      0.3125661897659302,
+      0.5615355658531189,
+      0.03355932652018965
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 19.102,
+    "hemorrhages": 0.333,
+    "cotton_wool": 0.0,
+    "lesion_percentage": 19.435
+  },
+  "images": {
+    "original": "uploads\\861e2ff0.png",
+    "processed": "static\\processed_images\\861e2ff0_processed.png",
+    "gradcam": "static/xai_outputs/861e2ff0_gradcam.jpg",
+    "lime": "static/xai_outputs/861e2ff0_lime.png",
+    "shap": "static/xai_outputs/861e2ff0_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-10T06:24:42.188209"
+}

@@ -1,0 +1,73 @@
+{
+  "uid": "39216a76",
+  "metadata": {
+    "Full_Name": "Jenifer",
+    "Age": "56",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 83.6,
+    "risk_score": 95.42
+  },
+  "probs": {
+    "cnn": [
+      0.01661859080195427,
+      0.009372644126415253,
+      0.012959725223481655,
+      0.9499325752258301,
+      0.011116418056190014
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.04583035825762507,
+      0.03836910264489016,
+      0.04008035760254893,
+      0.8360139336333661,
+      0.03970624786156982
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 0.169,
+    "hemorrhages": 7.567,
+    "cotton_wool": 0.0,
+    "lesion_percentage": 7.736
+  },
+  "images": {
+    "original": "uploads\\39216a76.png",
+    "processed": "static\\processed_images\\39216a76_processed.png",
+    "gradcam": "static/xai_outputs/39216a76_gradcam.jpg",
+    "lime": "static/xai_outputs/39216a76_lime.png",
+    "shap": "static/xai_outputs/39216a76_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-10T19:44:53.991331",
+  "nlp_patient": "Severe diabetic retinal disease features are present. Urgent ophthalmology review is recommended to prevent\n\nprogression. Key systemic risk factors: smoking, hypertension, obesity (BMI≥30). Lesion coverage: ~7.74% of\n\nimage area (automated estimate). Detected lesion highlights: exudates (0.17%), hemorrhages (7.57%). Reported\n\nmodel accuracy: 0.95. Urgent retina referral recommended; coordinate systemic optimization.\n\nSevere diabetic retinal disease features are present. Urgent ophthalmology review is recommended to prevent\n\nprogression. Key systemic risk factors: smoking, hypertension, obesity (BMI≥30). Lesion coverage: ~7.74% of\n\nimage area (automated estimate). Detected lesion highlights: exudates (0.17%), hemorrhages (7.57%). Reported\n\nmodel accuracy: 0.95. Urgent retina referral recommended; coordinate systemic optimization.",
+  "nlp_doctor": "Severe NPDR with extensive hemorrhages/IRMA. High risk for progression to PDR. Urgent referral advised. Lesion\n\nmetrics: exudates=0.169, hemorrhages=7.567, cotton_wool=0.0, lesion_percentage=7.736 The heatmap does not show\n\na concentrated activation; evidence is distributed. Recommended actions: Urgent retina referral recommended;\n\ncoordinate systemic optimization.\n\nSevere NPDR with extensive hemorrhages/IRMA. High risk for progression to PDR. Urgent referral advised. Lesion\n\nmetrics: exudates=0.169, hemorrhages=7.567, cotton_wool=0.0, lesion_percentage=7.736 The heatmap does not show\n\na concentrated activation; evidence is distributed. Recommended actions: Urgent retina referral recommended;\n\ncoordinate systemic optimization.",
+  "nlp_research": "Model classification: SEVERE NPDR. High confidence ensemble outputs; useful cases for prioritised curation.\n\nModel metrics: Accuracy=0.947, F1-score=0.938, AUC/ROC=0.971 Heatmap intensity score: 0.19\n\nModel classification: SEVERE NPDR. High confidence ensemble outputs; useful cases for prioritised curation.\n\nModel metrics: Accuracy=0.947, F1-score=0.938, AUC/ROC=0.971 Heatmap intensity score: 0.19",
+  "language_mode": "bilingual",
+  "algorithm_note": "VisionAI offline bilingual reporting engine."
+}

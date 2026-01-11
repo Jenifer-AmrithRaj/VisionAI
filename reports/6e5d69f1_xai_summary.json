@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "Full Name": "John Mathew",
+    "Age": 63.0,
+    "Gender": "Male",
+    "Contact": "8317378172",
+    "Systolic": 160.0,
+    "Diastolic": 101.0,
+    "Glucose Level": 323.0,
+    "BMI": 30.8,
+    "Smoking": "Yes",
+    "Duration of Diabetes (years)": 14.0,
+    "Hypertension": "Yes",
+    "Family History": "No"
+  },
+  "lesion_stats": {},
+  "predicted_stage": "NO_DR",
+  "confidence": 0.2034091081043826,
+  "risk_score": 20.34091081043826,
+  "model_info": {
+    "dl_probs": [
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "ml_probs": [
+      0.23409108104382578,
+      0.20804706861267097,
+      0.18129180971002212,
+      0.1714242267910108,
+      0.2051458138424704
+    ]
+  },
+  "images": {
+    "original": "C:\\Users\\jenif\\OneDrive\\Desktop\\DR_FINAL__PROJECT\\uploads\\6e5d69f1_608.png",
+    "preprocessed": "[[[ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]\n  ...\n  [ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]]\n\n [[ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]\n  ...\n  [ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]]\n\n [[ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]\n  ...\n  [ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]]\n\n ...\n\n [[13  7 11]\n  [ 8  9  8]\n  [ 8  9  8]\n  ...\n  [ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]]\n\n [[ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]\n  ...\n  [ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]]\n\n [[ 8  9  8]\n  [ 8  9  8]\n  [ 8  9  8]\n  ...\n  [ 8  3  6]\n  [ 8  9  8]\n  [ 8  9  8]]]",
+    "gradcam": null,
+    "lime": null,
+    "shap": "C:\\Users\\jenif\\OneDrive\\Desktop\\DR_FINAL__PROJECT\\explainability\\shap\\6e5d69f1_shap.png",
+    "roc": "explainability/research_figures/visionai_roc_curve.png"
+  },
+  "generated_at": "2025-11-07T10:44:21.657835",
+  "_static_map": {
+    "original_static": "tmp/6e5d69f1_6e5d69f1_608.png",
+    "gradcam_static": null,
+    "lime_static": null,
+    "shap_static": "C:\\Users\\jenif\\OneDrive\\Desktop\\DR_FINAL__PROJECT\\explainability\\shap\\6e5d69f1_shap.png"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "uid": "949354f2",
+  "metadata": {
+    "Full_Name": "jenifer",
+    "Age": "22",
+    "Gender": "Female",
+    "Systolic": "130",
+    "Diastolic": "80",
+    "Glucose_Level": "148",
+    "BMI": "30",
+    "Duration": "4",
+    "Smoking": "No",
+    "Hypertension": "No",
+    "Family_History": "No",
+    "Cholesterol": "235",
+    "HbA1c": "5.4",
+    "Insulin_Use": "No",
+    "Physical_Activity": "16",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "NO_DR",
+    "confidence": 84.32,
+    "risk_score": 1.0
+  },
+  "probs": {
+    "cnn": [
+      0.9547113180160522,
+      0.008773685432970524,
+      0.011920971795916557,
+      0.01217014528810978,
+      0.012423889711499214
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.8432091672330349,
+      0.03785998590708696,
+      0.039197415261363736,
+      0.03891583475698731,
+      0.04081759684152717
+    ]
+  },
+  "lesion_stats": {},
+  "images": {
+    "original": "uploads\\949354f2.png",
+    "processed": "static\\processed_images\\949354f2_processed.png",
+    "gradcam": "",
+    "lime": "",
+    "shap": ""
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2026-01-11T10:17:26.183818+00:00",
+  "reports": {
+    "patient_en": "Patient: jenifer\n\nSummary:\n- Detected stage: NO_DR\n- Risk level: Minimal\n\nInterpretation:\nNo signs of Diabetic Retinopathy were detected in this retinal image. The estimated risk is very low. Continue routine annual eye screenings and maintain good metabolic control.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_en": "Clinical Report — Ophthalmologist\n\nPatient: jenifer\nPredicted stage: NO_DR\n\nClinical interpretation:\nNo signs of diabetic retinopathy detected. Routine annual screening is recommended.\n\nNote:\nExplainability and lesion quantification were intentionally omitted as no pathology was detected.",
+    "research_en": "Research Notes\n\nUID: 949354f2\nPredicted stage: NO_DR\n\nNo pathological features detected.\nXAI generation and lesion quantification were skipped by design.",
+    "patient_kn": "",
+    "doctor_kn": "",
+    "research_kn": ""
+  }
+}

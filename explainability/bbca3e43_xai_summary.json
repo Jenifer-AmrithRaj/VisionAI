@@ -1,0 +1,78 @@
+{
+  "uid": "bbca3e43",
+  "metadata": {
+    "Full_Name": "solomon",
+    "Age": "78",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 83.6,
+    "risk_score": 95.42
+  },
+  "probs": {
+    "cnn": [
+      0.01661859080195427,
+      0.009372644126415253,
+      0.012959725223481655,
+      0.9499325752258301,
+      0.011116418056190014
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.04583035825762507,
+      0.03836910264489016,
+      0.04008035760254893,
+      0.8360139336333661,
+      0.03970624786156982
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 0.169,
+    "hemorrhages": 7.567,
+    "cotton_wool": 0.0,
+    "microaneurysms": 17.827,
+    "neovascularization": 11.424,
+    "total_lesion_load": 25.563
+  },
+  "images": {
+    "original": "uploads\\bbca3e43.png",
+    "processed": "static\\processed_images\\bbca3e43_processed.png",
+    "gradcam": "static/xai_outputs/bbca3e43_gradcam.jpg",
+    "lime": "static/xai_outputs/bbca3e43_lime.png",
+    "shap": "static/xai_outputs/bbca3e43_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-11T17:14:48.781120+00:00",
+  "reports": {
+    "patient_en": "Patient: solomon\n\nSummary:\n- Detected stage: SEVERE diabetic retinopathy.\n- Model confidence: 83.6%\n- Estimated retinal risk score: 95.42%\n\nKey findings:\n- Exudates: 0.169%; Hemorrhages: 7.567%; Cotton Wool: 0.0%; Microaneurysms: 17.827%; Neovascularization: 11.424%; Total Lesion Load: 25.563%\n\nAdvice and next steps:\n1. Maintain regular follow-ups with your eye specialist.\n2. Keep blood sugar and blood pressure under control.\n3. Stay active and follow a healthy diet (vegetables, fiber, limit sugar).\n4. If you notice blurred vision, floaters, sudden visual changes or pain, seek urgent care.\n\nLifestyle recommendations:\n- Avoid smoking; maintain hydration and regular sleep.\n- Early attention and good metabolic control reduce the risk of vision loss.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_en": "Clinical Report\n\nPatient stage: SEVERE\nModel confidence: 83.6%\nRisk score: 95.42%\n\nFindings:\n- Exudates: 0.169%\n- Hemorrhages: 7.567%\n- Cotton Wool: 0.0%\n- Microaneurysms: 17.827%\n- Neovascularization: 11.424%\n- Total Lesion Load: 25.563%\n\nModel and explainability:\n- Multi-model fusion: CNN ensemble (EfficientNet, ResNet50, ViT) and metadata models (RF, XGBoost, stacked ensemble).\n- Explainability overlays available: GradCAM++, LIME, SHAP — review heatmaps to confirm localization.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nClinical recommendations:\n1. Correlate with clinical exam and patient history.\n2. If findings consistent with moderate-severe disease, consider ophthalmology referral and OCT for macular edema assessment.\n3. Review GradCAM/LIME overlays before final grading.\n4. Optimize systemic risk factors (glycemic, BP, lipids).\n",
+    "research_en": "Research Notes\n\nUID: bbca3e43\nPredicted stage: SEVERE\nConfidence: 83.6%\nRisk score: 95.42%\n\nModel stack and fusion:\n- CNN ensemble: EfficientNet, ResNet50, ViT\n- Metadata models: Random Forest, XGBoost, Stacked ensemble\n- Fusion method: weighted averaging with risk calibration\n- Device used for inference: CPU\n\nExplainability summary:\n- GradCAM++ / LIME: localize exudates/hemorrhages in the posterior pole.\n- SHAP: systemic features (HbA1c, BMI, BP) show highest importance for risk estimation.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nProbability vector (fused): [0.04583035825762507, 0.03836910264489016, 0.04008035760254893, 0.8360139336333661, 0.03970624786156982]\n\nRecommendations for research:\n1. Validate lesion segmentation against expert masks (dice/IoU metrics).\n2. Add cotton-wool-spot augmentation / labeling to improve detection if false-negatives seen.\n3. Evaluate GradCAM fidelity vs human heatmaps; consider GradCAM region IoU as a metric.\n4. Consider temporal tracking for progressive DR detection (longitudinal data).\n",
+    "patient_kn": "ನಮಸ್ಕಾರ ಸೊಲೊಮನ್,\n\nತೀವ್ರ ಮಧುಮೇಹ ಬದಲಾವಣೆಗಳು ಕಂಡುಬರುತ್ತವೆ. ಶೀಘ್ರದಲ್ಲೇ ನಿಮ್ಮ ಕಣ್ಣಿನ ವೈದ್ಯರನ್ನು ಭೇಟಿ ಮಾಡುವುದು ಮುಖ್ಯ.\n\nಪತ್ತೆಯಾದ ಹಂತ: ತೀವ್ರ ಡಯಾಬಿಟಿಕ್ ರೆಟಿನೋಪತಿ.\n\nಸಂಶೋಧನೆಗಳ ಸಾರಾಂಶ: ಹೊರಸೂಸುವಿಕೆಗಳು 16.9%, ಹೆಮರೇಜ್ಗಳು 7.6%, ಹತ್ತಿ ಉಣ್ಣೆ 0.0%, ಮೈಕ್ರೊಅನ್ಯೂರಿಸಮ್ಗಳು 17.8%, ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್ 11.4%, ಒಟ್ಟು ಗಾಯದ ಹೊರೆ 25.6%.\nಮಾದರಿ ವಿಶ್ವಾಸ: N/A.\nಅಪಾಯಕಾರಿ ಅಂಶಗಳನ್ನು ಗಮನಿಸಲಾಗಿದೆ: ಧೂಮಪಾನ, ಅಧಿಕ ರಕ್ತದೊತ್ತಡ, ಬೊಜ್ಜು (BMI ≥30).\n\nಮುಂದಿನ ಹಂತಗಳು: ಹೆಚ್ಚಿನ ಮೌಲ್ಯಮಾಪನಕ್ಕಾಗಿ ನೇತ್ರಶಾಸ್ತ್ರದ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಅನ್ನು ಆದಷ್ಟು ಬೇಗ ಕಾಯ್ದಿರಿಸಿ.\n\nನೆನಪಿಡಿ - ಆರಂಭಿಕ ಗಮನವು ನಿಮ್ಮ ದೃಷ್ಟಿಯನ್ನು ಸಂರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. 💙",
+    "doctor_kn": "ಸೊಲೊಮನ್‌ಗಾಗಿ VisionAI ಕ್ಲಿನಿಕಲ್ ವರದಿ (ವಯಸ್ಸು: 78, BMI: 30.8)\n\nಹಂತ: ತೀವ್ರ ಡಯಾಬಿಟಿಕ್ ರೆಟಿನೋಪತಿ.\nಸಾರಾಂಶ: ವ್ಯಾಪಕವಾದ ರಕ್ತಸ್ರಾವಗಳು ಮತ್ತು ಸಿರೆಯ ಮಣಿಗಳು - ಸಂಭವನೀಯ ತೀವ್ರ NPDR.\nಸ್ವಯಂಚಾಲಿತ ಲೆಸಿಯಾನ್ ವಿಶ್ಲೇಷಣೆ: ಹೊರಸೂಸುವಿಕೆಗಳು 16.9%, ಹೆಮರೇಜ್ಗಳು 7.6%, ಹತ್ತಿ ಉಣ್ಣೆ 0.0%, ಮೈಕ್ರೊಅನ್ಯೂರಿಸಮ್ಗಳು 17.8%, ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್ 11.4%, ಒಟ್ಟು ಗಾಯದ ಹೊರೆ 25.6%.\nವಿಶ್ವಾಸ: N/A, AUC: N/A.\nವ್ಯವಸ್ಥಿತ ಅಪಾಯಗಳನ್ನು ಗುರುತಿಸಲಾಗಿದೆ: ಧೂಮಪಾನ, ಅಧಿಕ ರಕ್ತದೊತ್ತಡ, ಬೊಜ್ಜು (BMI ≥30).\n\nಶಿಫಾರಸು: ತುರ್ತು ನೇತ್ರಶಾಸ್ತ್ರದ ಉಲ್ಲೇಖ; ವ್ಯವಸ್ಥಿತ ಆಪ್ಟಿಮೈಸೇಶನ್.\n\nಗಮನಿಸಿ: ಕ್ಲಿನಿಕಲ್ ಸಂಶೋಧನೆಗಳು ಮತ್ತು ರೋಗಿಯ ಇತಿಹಾಸದೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಬಂಧಿಸಿ. ಲಭ್ಯವಿದ್ದರೆ Grad-CAM ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    "research_kn": "ವಿಷಯ: ಸೊಲೊಮನ್\nನಿರೀಕ್ಷಿತ ಹಂತ: ತೀವ್ರ\nಲೆಸಿಯಾನ್ ಸಾರಾಂಶ: ಹೊರಸೂಸುವಿಕೆಗಳು 16.9%, ರಕ್ತಸ್ರಾವಗಳು 7.6%, ಹತ್ತಿ ಉಣ್ಣೆ 0.0%, ಮೈಕ್ರೊಅನ್ಯೂರಿಸಮ್ಗಳು 17.8%, ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್ 11.4%, ಒಟ್ಟು ಗಾಯದ ಹೊರೆ 25.6%\nಮಾದರಿ ವಿಶ್ವಾಸ: N/A, AUC: N/A, GradCAM: ಲಭ್ಯವಿಲ್ಲ\n\nವಿಶ್ಲೇಷಣಾತ್ಮಕ ಟಿಪ್ಪಣಿಗಳು: ಹೆಚ್ಚಿನ ಲೆಸಿಯಾನ್ ಸಾಂದ್ರತೆ ಮತ್ತು ಹೀಟ್‌ಮ್ಯಾಪ್ ಕವರೇಜ್; ತೀವ್ರ NPDR ಸಂಭವನೀಯತೆಯ ಕರ್ವ್‌ಗೆ ಹೊಂದಿಕೆಯಾಗುವ ಮಾದರಿ.\n\nಸಂಶೋಧನಾ ಶಿಫಾರಸುಗಳು:\n- ಪರಿಣಿತ ಮುಖವಾಡದೊಂದಿಗೆ ಲೆಸಿಯಾನ್ ಸೆಗ್ಮೆಂಟೇಶನ್ ಅತಿಕ್ರಮಣವನ್ನು ಮೌಲ್ಯೀಕರಿಸಿ.\n- ಹಂತದ ಸಮತೋಲನವನ್ನು ಸುಧಾರಿಸಲು ಮುಂದಿನ ಮರುತರಬೇತಿ ಬ್ಯಾಚ್‌ನಲ್ಲಿ ಸೇರಿಸಿ.\n- ಮಾನವ ಗ್ರೇಡಿಂಗ್ ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳ ವಿರುದ್ಧ GradCAM ಪ್ರದೇಶದ ನಿಷ್ಠೆಯನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿ."
+  }
+}

@@ -1,0 +1,57 @@
+{
+    "uid": "d6a8365d",
+    "metadata": {
+        "Full_Name": "Jenifer",
+        "Age": "56",
+        "Gender": "Female",
+        "Systolic": "180",
+        "Diastolic": "110",
+        "Glucose_Level": "343",
+        "BMI": "30.8",
+        "Duration": "14",
+        "Smoking": "Yes",
+        "Hypertension": "Yes",
+        "Family_History": "Yes",
+        "Cholesterol": "230",
+        "HbA1c": "8.6",
+        "Insulin_Use": "Yes",
+        "Physical_Activity": "1",
+        "Medication": "Yes"
+    },
+    "prediction": {
+        "predicted_stage": "MODERATE",
+        "confidence": 59.73,
+        "risk_score": 20.0
+    },
+    "probs": {
+        "cnn": [
+            0.050950512290000916,
+            0.12119588255882263,
+            0.6888387799263,
+            0.13008862733840942,
+            0.008926257491111755
+        ],
+        "ml": [
+            0.10946697402880037,
+            0.12591892834551924,
+            0.07868937723337528,
+            0.37060002092386324,
+            0.3153247222159957
+        ],
+        "fused": [
+            0.05972798378599502,
+            0.12190434240705936,
+            0.597316402304916,
+            0.1661653363762275,
+            0.05488602757237338
+        ]
+    },
+    "lesion_stats": {},
+    "images": {
+        "original": "uploads\\d6a8365d.png",
+        "processed": "static\\processed_images\\d6a8365d_processed.png",
+        "gradcam": "explainability\\gradcam_clinicalglow\\d6a8365d_gradcam.jpg",
+        "lime": "explainability\\lime\\d6a8365d_lime.png",
+        "shap": "explainability\\shap\\d6a8365d_shap.png"
+    }
+}

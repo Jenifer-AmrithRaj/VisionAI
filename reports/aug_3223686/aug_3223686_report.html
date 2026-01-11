@@ -1,0 +1,71 @@
+
+    <html>
+    <head>
+      <meta charset="utf-8"/>
+      <title>VisionAI Report - aug_3223686</title>
+      <style>
+        body { font-family: Arial, sans-serif; margin: 24px; color:#111; background:#f8fafb; }
+        .col { display:inline-block; vertical-align:top; margin-right:20px; }
+        .imgbox { border:1px solid #ddd; padding:6px; background:#fff; border-radius:8px; }
+        .imgbox img { border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.15); margin: 6px; max-width:100%; height:auto; }
+        h1 { color:#0b486b; }
+        .section { margin-top:18px; padding:12px; border:1px solid #eee; border-radius:8px; background:#fff; }
+        table { border-collapse: collapse; width: 100%; }
+        td,th { padding:8px; border:1px solid #f1f1f1; }
+        .small { font-size: 0.9em; color: #555; }
+      </style>
+    </head>
+    <body>
+      <h1>VisionAI — XAI Report</h1>
+      <p class="small"><strong>Case:</strong> aug_3223686.jpg &nbsp; <strong>Generated:</strong> 2025-11-06T08:38:34.444779</p>
+
+      <div class="section">
+        <h2>Doctor Report — Detailed</h2>
+        <div class="col">
+          <h3>Original</h3>
+          <div class="imgbox"><img src="dataset\processed_images_2\PDR\aug_3223686.jpg" width="360"/></div>
+        </div>
+        <div class="col">
+          <h3>Grad-CAM++ (ClinicalGlow)</h3>
+          <div class="imgbox"><img src="explainability\gradcam_clinicalglow\aug_3223686_gradcam_clinicalglow_final.jpg" width="360"/></div>
+        </div>
+        <div style="clear:both;"></div>
+        <h4>Lesion summary</h4>
+        <table>
+          <tr><th>Lesion coverage (%)</th><td>26.51</td></tr>
+          <tr><th>Exudates (%)</th><td>0.42</td></tr>
+          <tr><th>Hemorrhages (%)</th><td>1.44</td></tr>
+          <tr><th>Cotton Wool (%)</th><td>5.37</td></tr>
+        </table>
+        <h4>Notes (auto)</h4>
+        <ul>
+          <li>Model focused regions highlighted (Grad-CAM & LIME). Use these to cross-check clinical lesions.</li>
+          <li>If lesion coverage &gt; 20% — suggest urgent specialist review.</li>
+          <li>Lesion types are heuristic estimates from activation strengths; confirm clinically.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Patient Report — Friendly</h2>
+        <p><strong>Summary:</strong> Signs of Diabetic Retinopathy detected — please consult an ophthalmologist soon.</p>
+        <p><strong>Recommended Actions:</strong></p>
+        <ul>
+          <li>Control blood glucose and blood pressure.</li>
+          <li>Specialist referral recommended if lesions appear extensive.</li>
+          <li>Maintain routine retinal checkups (6–12 months) or sooner if symptoms worsen.</li>
+        </ul>
+        <h3>LIME overlay</h3>
+        <div class="imgbox"><img src="explainability\lime\aug_3223686_lime_adaptive_retina.jpg" width="360"/></div>
+      </div>
+
+      <div class="section">
+        <h2>Research Summary</h2>
+        <p>Models used: EfficientNet-B0, ResNet50, ViT (ensemble). Explainability: Grad-CAM++, LIME, SHAP-like.</p>
+        <p>Include ROC/AUC, F1 and confusion matrix from validation if available (run with --compute_metrics).</p>
+        <h3>SHAP (metadata)</h3>
+        <div class="imgbox"><img src="explainability\shap\aug_3223686_shap.jpg" width="480"/></div>
+      </div>
+
+    </body>
+    </html>
+    

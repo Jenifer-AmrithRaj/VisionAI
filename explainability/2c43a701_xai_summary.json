@@ -1,0 +1,34 @@
+{
+    "uid": "2c43a701",
+    "metadata": {
+        "Full_Name": "Jenifer",
+        "Age": "56",
+        "Gender": "Female",
+        "Systolic": "180",
+        "Diastolic": "110",
+        "Glucose_Level": "343",
+        "BMI": "30.8",
+        "Duration": "14",
+        "Smoking": "Yes",
+        "Hypertension": "Yes",
+        "Family_History": "Yes",
+        "Cholesterol": "230",
+        "HbA1c": "8.6",
+        "Insulin_Use": "Yes",
+        "Physical_Activity": "1",
+        "Medication": "Yes"
+    },
+    "prediction": {
+        "predicted_stage": "ERROR",
+        "confidence": 68.88,
+        "risk_score": 20.0
+    },
+    "lesion_stats": {},
+    "images": {
+        "original": "uploads\\2c43a701.png",
+        "processed": "static\\processed_images\\2c43a701_processed.png",
+        "gradcam": "explainability\\gradcam_clinicalglow\\2c43a701_gradcam.jpg",
+        "lime": "explainability\\lime\\2c43a701_lime.png",
+        "shap": "explainability\\shap\\2c43a701_shap.png"
+    }
+}

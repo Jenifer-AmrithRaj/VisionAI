@@ -1,0 +1,44 @@
+{
+  "uid": "5c333b19",
+  "metadata": {
+    "Full Name": "John Mathew",
+    "Age": 63.0,
+    "Gender": "Female",
+    "Contact": "8317378172",
+    "Systolic": 160.0,
+    "Diastolic": 101.0,
+    "Glucose Level": 323.0,
+    "BMI": 30.8,
+    "Smoking": "Yes",
+    "Duration of Diabetes (years)": 14.0,
+    "Hypertension": "Yes",
+    "Family History": "No"
+  },
+  "lesion_stats": {},
+  "predicted_stage": "MODERATE",
+  "confidence": 0.44634423761365344,
+  "risk_score": 62.48819326591148,
+  "model_info": {
+    "dl_probs": [
+      0.11865044385194778,
+      0.15192720293998718,
+      0.4757945239543915,
+      0.14245177805423737,
+      0.11117604374885559
+    ],
+    "ml_probs": [
+      0.23409108106417412,
+      0.20804706873581086,
+      0.181291809558623,
+      0.17142422679218022,
+      0.20514581384921188
+    ]
+  },
+  "images": {
+    "original": "C:\\Users\\jenif\\OneDrive\\Desktop\\DR_FINAL__PROJECT\\uploads\\13da2028_603.png",
+    "gradcam": null,
+    "lime": null,
+    "shap": null
+  },
+  "generated_at": "2025-11-07T10:52:50.776841"
+}

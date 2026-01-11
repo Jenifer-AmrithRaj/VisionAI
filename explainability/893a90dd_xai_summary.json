@@ -1,0 +1,77 @@
+{
+  "uid": "893a90dd",
+  "metadata": {
+    "Full_Name": "sebastain",
+    "Age": "89",
+    "Gender": "Male",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "432",
+    "BMI": "30",
+    "Duration": "19",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "300",
+    "HbA1c": "8.9",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "3",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "PDR",
+    "confidence": 85.43,
+    "risk_score": 96.2
+  },
+  "probs": {
+    "cnn": [
+      0.007390813436359167,
+      0.007619400043040514,
+      0.008325896225869656,
+      0.007223432417958975,
+      0.9694404602050781
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.03798674560767015,
+      0.03687884358234068,
+      0.036141601296623284,
+      0.034711129087537575,
+      0.8542816804258282
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 6.956,
+    "hemorrhages": 3.751,
+    "microaneurysms": 23.511,
+    "neovascularization": 30.0,
+    "total_lesion_load": 34.218
+  },
+  "images": {
+    "original": "uploads\\893a90dd.png",
+    "processed": "static\\processed_images\\893a90dd_processed.png",
+    "gradcam": "static/xai_outputs/893a90dd_gradcam.jpg",
+    "lime": "static/xai_outputs/893a90dd_lime.png",
+    "shap": "static/xai_outputs/893a90dd_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2026-01-11T11:16:45.456381+00:00",
+  "reports": {
+    "patient_en": "Patient Name: sebastain\n\nResult Summary:\nDiabetic retinopathy changes were detected at the Pdr stage.\n\nClinical Interpretation:\nThis stage indicates damage to the small blood vessels of the retina caused by diabetes. At this level, vision may still be preserved, but disease progression is possible without appropriate monitoring and management.\n\nRecommendations:\n- Follow up with an ophthalmologist as advised.\n- Maintain strict glycemic and blood pressure control.\n- Report any new visual symptoms immediately.\n\nModel Confidence: 85.43%\nEstimated Risk Score: 96.2%\n\nVisionAI provides automated screening support and does not replace clinical diagnosis.",
+    "doctor_en": "Clinical Report — Ophthalmology\n\nPatient: sebastain\n\nAutomated Diagnosis:\nPredicted Stage: Pdr\nConfidence: 85.43%\nRisk Score: 96.2%\n\nFindings:\nAutomated lesion quantification and explainability analyses (Grad-CAM, LIME, SHAP) support the predicted disease stage.\n\nClinical Interpretation:\nThe findings are consistent with diabetic microvascular damage. Correlation with clinical examination and OCT imaging is recommended where appropriate.\n\nPerformance Reference:\nAccuracy: 0.947 | F1-score: 0.938 | AUC: 0.971\n\nVisionAI is intended for decision support and audit assistance.",
+    "research_en": "Research Notes\n\nUID: 893a90dd\n\nPredicted Stage: Pdr\n\nModel Architecture:\nCNN ensemble (EfficientNet, ResNet50, ViT) combined with metadata models (Random Forest, XGBoost) via calibrated fusion.\n\nExplainability:\nGrad-CAM highlights spatial retinal features, LIME validates local pixel importance, and SHAP explains systemic risk contribution.\n\nProbability Vectors:\nCNN: [0.007390813436359167, 0.007619400043040514, 0.008325896225869656, 0.007223432417958975, 0.9694404602050781]\nML: [0.21136369507961952, 0.20268235745827803, 0.19376393050773666, 0.19047474400645248, 0.20171527294791336]\nFused: [0.03798674560767015, 0.03687884358234068, 0.036141601296623284, 0.034711129087537575, 0.8542816804258282]\n\nInference Device: CPU",
+    "patient_kn": "",
+    "doctor_kn": "",
+    "research_kn": ""
+  }
+}

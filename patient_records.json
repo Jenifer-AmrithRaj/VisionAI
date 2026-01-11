@@ -1,0 +1,44 @@
+[
+  {
+    "timestamp": "2025-10-28 13:29:00",
+    "name": "John Mathew",
+    "image": "uploads\\606_20251028_132849.png",
+    "gradcam": "gradcam\\gradcam_606_20251028_132849_132855.png",
+    "result": {
+      "pred_class": "SEVERE",
+      "confidence": 0.31451142609780836,
+      "risk_score": 50.321828175649344
+    },
+    "pdf_patient": "patient_report_606_20251028_132849.pdf",
+    "pdf_doctor": "doctor_report_606_20251028_132849.pdf",
+    "pdf_research": "research_report_606_20251028_132849.pdf"
+  },
+  {
+    "timestamp": "2025-10-28 13:28:58",
+    "name": "John Mathew",
+    "image": "uploads\\606_20251028_132850.png",
+    "gradcam": "gradcam\\gradcam_606_20251028_132850_132855.png",
+    "result": {
+      "pred_class": "SEVERE",
+      "confidence": 0.31451142609780836,
+      "risk_score": 50.321828175649344
+    },
+    "pdf_patient": "patient_report_606_20251028_132850.pdf",
+    "pdf_doctor": "doctor_report_606_20251028_132850.pdf",
+    "pdf_research": "research_report_606_20251028_132850.pdf"
+  },
+  {
+    "timestamp": "2025-10-28 12:50:26",
+    "name": "John Mathew",
+    "image": "uploads\\627_20251028_125021.png",
+    "gradcam": "uploads\\627_20251028_125021.png",
+    "result": {
+      "pred_class": "SEVERE",
+      "confidence": 0.5073984640902858,
+      "risk_score": 81.18375425444573
+    },
+    "pdf_patient": "patient_report_627_20251028_125021.pdf",
+    "pdf_doctor": "doctor_report_627_20251028_125021.pdf",
+    "pdf_research": "research_report_627_20251028_125021.pdf"
+  }
+]

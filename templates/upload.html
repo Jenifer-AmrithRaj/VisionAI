@@ -1,0 +1,182 @@
+<!-- File: templates/upload.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VisionAI | Start Screening</title>
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <link rel="icon" href="{{ url_for('static', filename='icons/icon-192x192.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="page">
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- ✅ FIXED ROUTE: from 'index' → 'splash' -->
+      <a class="brand" href="{{ url_for('splash') }}">
+        <img src="{{ url_for('static', filename='visionai_logo.png') }}" alt="VisionAI logo" class="logo" />
+        <div class="brand-text">
+          <h1 class="app-title">VisionAI</h1>
+        </div>
+      </a>
+      <nav class="nav">
+        <!-- ✅ FIXED ROUTE: from 'index' → 'home' -->
+        <a class="btn btn-outline" href="{{ url_for('home') }}">Home</a>
+        <a class="btn btn-primary" href="{{ url_for('history') }}">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding:2rem 0;">
+    <h2 style="color:#0077b6;margin-bottom:1rem;">Patient Details & Image Capture</h2>
+    <p class="lead">Fill in the complete patient information and upload or capture a retinal image.</p>
+
+    <form id="uploadForm" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+      <!-- Patient info -->
+      <section class="card" style="padding:1rem 1.2rem;margin-bottom:1.5rem;background:#fff;border-radius:12px;">
+        <h3 style="margin-bottom:0.8rem;">Patient Information</h3>
+
+        <div class="form-grid">
+          <label>Full Name
+            <input type="text" name="Full_Name" required />
+          </label>
+
+          <label>Age
+            <input type="number" name="Age" min="1" max="120" required />
+          </label>
+
+          <label>Gender
+            <select name="Gender" required>
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </label>
+
+          <label>Systolic (mmHg)
+            <input type="number" name="Systolic" min="50" max="250" required />
+          </label>
+
+          <label>Diastolic (mmHg)
+            <input type="number" name="Diastolic" min="30" max="200" required />
+          </label>
+
+          <label>Glucose Level (mg/dL)
+            <input type="number" name="Glucose_Level" required />
+          </label>
+
+          <label>BMI
+            <input type="number" step="0.1" name="BMI" required />
+          </label>
+
+          <label>Duration of Diabetes (years)
+            <input type="number" step="0.1" name="Duration" required />
+          </label>
+
+          <label>Smoking
+            <select name="Smoking" required>
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </label>
+
+          <label>Hypertension
+            <select name="Hypertension" required>
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </label>
+
+          <label>Family History
+            <select name="Family_History" required>
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </label>
+
+          <label>Cholesterol (mg/dL)
+            <input type="number" step="0.1" name="Cholesterol" required />
+          </label>
+
+          <label>HbA1c (%)
+            <input type="number" step="0.1" name="HbA1c" required />
+          </label>
+
+          <label>Insulin Use
+            <select name="Insulin_Use" required>
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </label>
+
+          <label>Physical Activity (hrs/week)
+            <input type="number" step="0.1" name="Physical_Activity" required />
+          </label>
+
+          <label>Medication (Diabetes-related)
+            <select name="Medication" required>
+              <option value="">Select</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- Image section -->
+      <section class="card" style="padding:1rem 1.2rem;background:#fff;border-radius:12px;">
+        <h3 style="margin-bottom:0.8rem;">Fundus Image</h3>
+
+        <div class="upload-section">
+          <input type="file" id="imageUpload" name="fundus_image" accept="image/*" />
+          <button type="button" id="captureBtn" class="btn btn-secondary">Capture from Camera</button>
+        </div>
+
+        <div id="previewContainer" style="margin-top:1rem;text-align:center;display:none;">
+          <p style="margin-bottom:0.5rem;">Image Preview:</p>
+          <img id="previewImage" src="#" alt="Preview" style="max-width:280px;border-radius:8px;border:2px solid #e0e0e0;" />
+        </div>
+
+        <video id="cameraStream" autoplay playsinline style="display:none;width:100%;max-width:320px;border-radius:8px;margin-top:1rem;"></video>
+        <button type="button" id="capturePhotoBtn" class="btn btn-primary" style="display:none;margin-top:0.6rem;">Capture Photo</button>
+        <canvas id="canvas" style="display:none;"></canvas>
+      </section>
+
+      <div style="text-align:center;margin-top:1.5rem;">
+        <button type="submit" class="btn btn-primary large">Analyze & Generate Reports</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© VisionAI • DR Screening</small>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+
+  <!-- 🧠 VisionAI Floating Sidebar Monitor -->
+  <div id="visionai-sidebar" class="collapsed">
+    <div class="sidebar-header">
+      <img src="{{ url_for('static', filename='visionai_logo.png') }}" alt="Logo">
+      <span>VisionAI Monitor</span>
+      <div id="sidebar-toggle" class="toggle-btn">⚙️</div>
+    </div>
+    <div class="sidebar-body">
+      <div><b>CPU:</b> <span id="sidebar-cpu">--%</span></div>
+      <div><b>RAM:</b> <span id="sidebar-ram">--%</span></div>
+      <div><b>GPU:</b> <span id="sidebar-gpu">-- MB</span></div>
+      <div><b>Temp:</b> <span id="sidebar-temp">--°C</span></div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/sidebar_monitor.js') }}"></script>
+
+</body>
+</html>

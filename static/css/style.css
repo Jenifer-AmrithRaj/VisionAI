@@ -1,0 +1,414 @@
+/* =======================================
+   VisionAI - Global App Styling
+   ======================================= */
+
+/* ---- Base Theme ---- */
+:root {
+  --primary: #00b4d8;
+  --secondary: #0077b6;
+  --accent: #90e0ef;
+  --light-bg: #f8f9fb;
+  --text-dark: #222;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  animation: fadeIn 0.6s ease-in;
+}
+
+/* ---- Containers ---- */
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+  animation: slideUp 0.8s ease;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: var(--secondary);
+}
+
+button, .btn {
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background: var(--secondary);
+  transform: scale(1.05);
+}
+
+/* ---- Login ---- */
+.login-container {
+  width: 350px;
+  margin: 100px auto;
+  padding: 40px;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.login-container input {
+  width: 90%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* ---- Upload Form ---- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-weight: 600;
+}
+
+input[type="file"], input[type="text"], input[type="number"], select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+input[type="submit"] {
+  width: fit-content;
+  align-self: center;
+}
+
+/* ---- XAI Cards ---- */
+.xai-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.xai-card {
+  background: var(--card-bg);
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  width: 280px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.xai-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.xai-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* ---- Table (History) ---- */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th, .history-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.history-table th {
+  background: var(--primary);
+  color: white;
+}
+
+/* ---- Animations ---- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes logoPop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* ---- Splash ---- */
+.splash-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  animation: fadeIn 1s ease;
+}
+
+.splash-logo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  animation: logoPop 1.2s ease;
+}
+
+.splash-text {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 20px;
+  animation: fadeIn 1.8s ease;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+  }
+  .xai-card {
+    width: 90%;
+  }
+}
+
+/* =============================================================
+   VisionAI Floating Sidebar Monitor
+   Elegant Teal–Cyan Medical Theme
+   ============================================================= */
+#visionai-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  background: rgba(0, 12, 25, 0.85);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: 14px;
+  padding: 14px 18px;
+  width: 200px;
+  z-index: 9999;
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+  font-family: 'Fira Code', monospace;
+  color: #00ffcc;
+  transition: all 0.35s ease;
+  opacity: 0;
+  animation: sidebarFadeIn 1s ease forwards;
+}
+
+#visionai-sidebar:hover {
+  background: rgba(0, 30, 50, 0.96);
+  transform: translateY(-50%) scale(1.03);
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.45);
+}
+
+#visionai-sidebar .sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0,255,204,0.25);
+  padding-bottom: 8px;
+}
+
+#visionai-sidebar .sidebar-header img {
+  height: 28px;
+  width: 28px;
+  margin-right: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0,255,204,0.3);
+}
+
+#visionai-sidebar .sidebar-header span {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #aefeff;
+  letter-spacing: 0.5px;
+}
+
+#visionai-sidebar .sidebar-body {
+  margin-top: 6px;
+}
+
+#visionai-sidebar .sidebar-body div {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  color: #ccfff8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#visionai-sidebar span {
+  color: #aefeff;
+}
+
+/* --- Soft fade-in animation --- */
+@keyframes sidebarFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(50px, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+/* =============================================================
+   VisionAI Floating Sidebar Monitor 2.0  (Collapsible + Glow)
+   ============================================================= */
+#visionai-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background: rgba(0, 10, 20, 0.88);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: 14px;
+  padding: 14px 18px;
+  width: 220px;
+  z-index: 9999;
+  box-shadow: 0 0 18px rgba(0, 255, 204, 0.35);
+  font-family: 'Fira Code', monospace;
+  color: #00ffcc;
+  transition: all 0.4s ease;
+  opacity: 0;
+  animation: sidebarFadeIn 1s ease forwards;
+  backdrop-filter: blur(10px);
+}
+
+#visionai-sidebar.collapsed {
+  right: -210px;
+  opacity: 0.7;
+}
+
+#visionai-sidebar:hover:not(.collapsed) {
+  background: rgba(0, 25, 45, 0.96);
+  box-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
+  transform: translateY(-50%) scale(1.02);
+}
+
+#visionai-sidebar .sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0,255,204,0.25);
+  padding-bottom: 6px;
+}
+
+#visionai-sidebar .sidebar-header img {
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0,255,204,0.4);
+}
+
+#visionai-sidebar .sidebar-header span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #aefeff;
+  letter-spacing: 0.5px;
+  margin-left: 6px;
+}
+
+#visionai-sidebar .toggle-btn {
+  background: rgba(0,255,204,0.15);
+  border: 1px solid rgba(0,255,204,0.4);
+  color: #00ffcc;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-left: auto;
+}
+
+#visionai-sidebar .toggle-btn:hover {
+  background: rgba(0,255,204,0.3);
+  transform: rotate(90deg);
+}
+
+#visionai-sidebar .sidebar-body div {
+  font-size: 0.85rem;
+  color: #ccfff8;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+/* Fade-in animation */
+@keyframes sidebarFadeIn {
+  from { opacity: 0; transform: translate(60px, -50%); }
+  to { opacity: 1; transform: translate(0, -50%); }
+}
+
+/* =============================================================
+   VisionAI Floating Sidebar Monitor
+   ============================================================= */
+#visionai-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background: rgba(0, 12, 25, 0.85);
+  border: 1px solid rgba(0, 255, 204, 0.12);
+  border-radius: 12px;
+  padding: 12px 14px;
+  width: 200px;
+  z-index: 9999;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  font-family: 'Fira Code', monospace;
+  color: #00ffcc;
+  transition: all 0.25s ease;
+}
+#visionai-sidebar.collapsed { opacity: 0.86; transform: translateY(-50%) scale(0.98); }
+#visionai-sidebar .sidebar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(0,255,204,0.06);
+  padding-bottom: 6px;
+}
+#visionai-sidebar .sidebar-header img {
+  height: 26px;
+  margin-right: 8px;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0,255,204,0.06);
+}
+#visionai-sidebar .sidebar-body div {
+  font-size: 0.88rem;
+  margin-bottom: 6px;
+}
+#visionai-sidebar span { float: right; color: #aefeff; }

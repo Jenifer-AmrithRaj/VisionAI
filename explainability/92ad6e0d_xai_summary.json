@@ -1,0 +1,78 @@
+{
+  "uid": "92ad6e0d",
+  "metadata": {
+    "Full_Name": "solomon",
+    "Age": "78",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "MODERATE",
+    "confidence": 44.51,
+    "risk_score": 95.55
+  },
+  "probs": {
+    "cnn": [
+      0.015032595954835415,
+      0.014961891807615757,
+      0.48940330743789673,
+      0.4635331332683563,
+      0.01706910878419876
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.044482259415023734,
+      0.04311996028982296,
+      0.4450573868056451,
+      0.4225743614982674,
+      0.04476603199124101
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 3.212,
+    "hemorrhages": 5.341,
+    "cotton_wool": 0.0,
+    "microaneurysms": 29.44,
+    "neovascularization": 8.432,
+    "total_lesion_load": 37.993
+  },
+  "images": {
+    "original": "uploads\\92ad6e0d.png",
+    "processed": "static\\processed_images\\92ad6e0d_processed.png",
+    "gradcam": "static/xai_outputs/92ad6e0d_gradcam.jpg",
+    "lime": "static/xai_outputs/92ad6e0d_lime.png",
+    "shap": "static/xai_outputs/92ad6e0d_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-11T17:13:56.677244+00:00",
+  "reports": {
+    "patient_en": "Patient: solomon\n\nSummary:\n- Detected stage: MODERATE diabetic retinopathy.\n- Model confidence: 44.51%\n- Estimated retinal risk score: 95.55%\n\nKey findings:\n- Exudates: 3.212%; Hemorrhages: 5.341%; Cotton Wool: 0.0%; Microaneurysms: 29.44%; Neovascularization: 8.432%; Total Lesion Load: 37.993%\n\nAdvice and next steps:\n1. Maintain regular follow-ups with your eye specialist.\n2. Keep blood sugar and blood pressure under control.\n3. Stay active and follow a healthy diet (vegetables, fiber, limit sugar).\n4. If you notice blurred vision, floaters, sudden visual changes or pain, seek urgent care.\n\nLifestyle recommendations:\n- Avoid smoking; maintain hydration and regular sleep.\n- Early attention and good metabolic control reduce the risk of vision loss.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_en": "Clinical Report\n\nPatient stage: MODERATE\nModel confidence: 44.51%\nRisk score: 95.55%\n\nFindings:\n- Exudates: 3.212%\n- Hemorrhages: 5.341%\n- Cotton Wool: 0.0%\n- Microaneurysms: 29.44%\n- Neovascularization: 8.432%\n- Total Lesion Load: 37.993%\n\nModel and explainability:\n- Multi-model fusion: CNN ensemble (EfficientNet, ResNet50, ViT) and metadata models (RF, XGBoost, stacked ensemble).\n- Explainability overlays available: GradCAM++, LIME, SHAP — review heatmaps to confirm localization.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nClinical recommendations:\n1. Correlate with clinical exam and patient history.\n2. If findings consistent with moderate-severe disease, consider ophthalmology referral and OCT for macular edema assessment.\n3. Review GradCAM/LIME overlays before final grading.\n4. Optimize systemic risk factors (glycemic, BP, lipids).\n",
+    "research_en": "Research Notes\n\nUID: 92ad6e0d\nPredicted stage: MODERATE\nConfidence: 44.51%\nRisk score: 95.55%\n\nModel stack and fusion:\n- CNN ensemble: EfficientNet, ResNet50, ViT\n- Metadata models: Random Forest, XGBoost, Stacked ensemble\n- Fusion method: weighted averaging with risk calibration\n- Device used for inference: CPU\n\nExplainability summary:\n- GradCAM++ / LIME: localize exudates/hemorrhages in the posterior pole.\n- SHAP: systemic features (HbA1c, BMI, BP) show highest importance for risk estimation.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nProbability vector (fused): [0.044482259415023734, 0.04311996028982296, 0.4450573868056451, 0.4225743614982674, 0.04476603199124101]\n\nRecommendations for research:\n1. Validate lesion segmentation against expert masks (dice/IoU metrics).\n2. Add cotton-wool-spot augmentation / labeling to improve detection if false-negatives seen.\n3. Evaluate GradCAM fidelity vs human heatmaps; consider GradCAM region IoU as a metric.\n4. Consider temporal tracking for progressive DR detection (longitudinal data).\n",
+    "patient_kn": "",
+    "doctor_kn": "",
+    "research_kn": ""
+  }
+}

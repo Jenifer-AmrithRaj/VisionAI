@@ -1,0 +1,64 @@
+{
+  "uid": "23914da7",
+  "metadata": {
+    "Full_Name": "Jenifer",
+    "Age": "56",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "343",
+    "BMI": "30.8",
+    "Duration": "14",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 45.9,
+    "risk_score": 20.0
+  },
+  "probs": {
+    "cnn": [
+      0.052160415798425674,
+      0.10641966015100479,
+      0.35009488463401794,
+      0.4589567184448242,
+      0.032368291169404984
+    ],
+    "ml": [
+      0.10946697402880037,
+      0.12591892834551924,
+      0.07868937723337528,
+      0.37060002092386324,
+      0.3153247222159957
+    ],
+    "fused": [
+      0.052160415798425674,
+      0.10641966015100479,
+      0.35009488463401794,
+      0.4589567184448242,
+      0.032368291169404984
+    ]
+  },
+  "lesion_stats": {},
+  "images": {
+    "original": "uploads\\23914da7.png",
+    "processed": "static\\processed_images\\23914da7_processed.png",
+    "gradcam": "explainability\\gradcam_clinicalglow\\23914da7_gradcam.jpg",
+    "lime": "explainability\\lime\\23914da7_lime.png",
+    "shap": "explainability\\shap\\23914da7_shap.png"
+  },
+  "generated_at": "2025-11-09T23:41:06.868790",
+  "nlp": {
+    "patient_report": "Patient: Jenifer\n\nPredicted Stage: SEVERE\nConfidence: 45.90% \u2014 Low confidence; manual review advised.\n\nSevere non-proliferative DR \u2014 multiple hemorrhages / venous beading.\n\nEstimated risk score: 20.0%\n\nLesion summary: {}\n\nPlease consult your physician for confirmation.",
+    "doctor_report": "Doctor Report for Jenifer (56 yrs)\n\nAI Stage: SEVERE\nConfidence: 45.90%\n\nLesion Quantification: {}\n\nInterpretation: Severe non-proliferative DR \u2014 multiple hemorrhages / venous beading.\n\nRecommendation: Clinical correlation advised; cross-verify with OCT if available.",
+    "research_report": "Research Summary (UID: 23914da7)\n\nPredicted Stage: SEVERE\nConfidence: 45.90%\nRisk Score: 20.0%\n\nMetadata used:\n{\n  \"Full_Name\": \"Jenifer\",\n  \"Age\": \"56\",\n  \"Gender\": \"Female\",\n  \"Systolic\": \"180\",\n  \"Diastolic\": \"110\",\n  \"Glucose_Level\": \"343\",\n  \"BMI\": \"30.8\",\n  \"Duration\": \"14\",\n  \"Smoking\": \"Yes\",\n  \"Hypertension\": \"Yes\",\n  \"Family_History\": \"Yes\",\n  \"Cholesterol\": \"230\",\n  \"HbA1c\": \"8.6\",\n  \"Insulin_Use\": \"Yes\",\n  \"Physical_Activity\": \"1\",\n  \"Medication\": \"Yes\"\n}\n\nFusion: Weighted CNN + ML ensemble. SHAP & GradCAM included where available.\nGenerated on 2025-11-09T23:41:06.998333.",
+    "generated_at": "2025-11-09T23:41:06.998355"
+  }
+}

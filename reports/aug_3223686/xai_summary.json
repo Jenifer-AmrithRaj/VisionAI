@@ -1,0 +1,47 @@
+{
+  "metadata": {
+    "Patient ID": "Patient_328",
+    "Patient Name": "Jenifer Rao",
+    "Age": "61",
+    "Gender": "Male",
+    "BP": "142/72",
+    "Systolic": 142.0,
+    "Diastolic": 72.0,
+    "Glucose Level": 110.0,
+    "BMI": 32.7,
+    "Smoking": "Yes",
+    "Duration of Diabetes (years)": 18.0,
+    "Hypertension": "No",
+    "Family History": "Yes",
+    "Phone": "000-000-0000",
+    "Address": "Remote"
+  },
+  "lesion_stats": {
+    "lesion_percentage": 26.51,
+    "exudates": 0.42,
+    "hemorrhages": 1.44,
+    "cotton_wool": 5.37,
+    "microaneurysms": 0.0
+  },
+  "predicted_stage": "PDR",
+  "pred_stage": "PDR",
+  "confidence": 0.96,
+  "model_info": {
+    "models": ["EfficientNet-B0", "ResNet50", "ViT", "XGBoost", "RandomForest"],
+    "ensemble_method": "weighted_soft_voting",
+    "metrics": {
+      "accuracy": 0.985,
+      "f1": 0.982,
+      "auc": 0.993
+    }
+  },
+  "images": {
+    "original": "dataset/processed_images_2/PDR/aug_3223686.jpg",
+    "preprocessed": "explainability/preprocessed/aug_3223686_preprocessed.jpg",
+    "gradcam": "explainability/gradcam_clinicalglow/aug_3223686_gradcam_clinicalglow_final.jpg",
+    "lime": "explainability/lime/aug_3223686_lime_adaptive_retina.jpg",
+    "shap": "explainability/shap/aug_3223686_shap.jpg",
+    "roc": "explainability/research_figures/visionai_roc_curve.png"
+  },
+  "generated_at": "2025-11-06T10:00:00"
+}

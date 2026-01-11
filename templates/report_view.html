@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VisionAI | Report Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="{{ url_for('static', filename='icons/icon-192x192.png') }}">
+<link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/service_worker.js')
+      .then(() => console.log('✅ Service Worker Registered'))
+      .catch(err => console.log('❌ SW Failed:', err));
+  }
+</script>
+<style>
+body { background: linear-gradient(135deg,#030b18,#071328); color:#fff; font-family:'Poppins',sans-serif; }
+.navbar{background:rgba(255,255,255,0.03); border-bottom:1px solid rgba(255,255,255,0.06);}
+.card{background:rgba(255,255,255,0.04); border-radius:12px; padding:1rem;}
+iframe{border:none;width:100%;height:85vh;background:#fff;border-radius:8px;}
+.tab-btn{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#cde8fa;border-radius:8px;padding:8px 12px;}
+.tab-btn.active{background:linear-gradient(45deg,#00b4d8,#0077b6);color:#fff;}
+#translateToggle{background:linear-gradient(45deg,#00b4d8,#0077b6);border:none;color:#fff;border-radius:8px;padding:6px 10px;font-size:0.9rem;}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-dark p-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='visionai_logo.png') }}" style="height:38px;margin-right:8px;">
+      <span class="fw-bold text-info">VisionAI</span>
+    </a>
+    <div>
+      <a href="{{ url_for('history') }}" class="btn btn-outline-light btn-sm me-2">History</a>
+      <a href="{{ url_for('upload_page') }}" class="btn btn-outline-info btn-sm">New Screening</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-4">
+  <a href="{{ url_for('history') }}" class="btn btn-link text-light mb-3">&larr; Back to History</a>
+
+  <div class="card">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <h5 class="mb-0">📄 VisionAI Report Viewer</h5>
+      <button id="translateToggle">🌐 Kannada Mode: OFF</button>
+    </div>
+
+    <div class="d-flex gap-2 my-2 align-items-center flex-wrap">
+      <button class="tab-btn active" id="tab-patient" onclick="showReport('patient')">👤 Patient</button>
+      <button class="tab-btn" id="tab-doctor" onclick="showReport('doctor')">🩺 Doctor</button>
+      <button class="tab-btn" id="tab-research" onclick="showReport('research')">🧠 Research</button>
+
+      <div class="ms-auto d-flex align-items-center gap-2 mt-2 mt-md-0">
+        <button id="downloadBtn" class="btn btn-outline-light btn-sm">⬇️ Download</button>
+      </div>
+    </div>
+
+    <div id="reportContainer" style="margin-top:12px;">
+      <iframe id="reportFrame" src=""></iframe>
+    </div>
+  </div>
+</div>
+
+<footer class="text-center mt-3 text-muted">
+  <small>VisionAI © 2025 — Explainable Retinal Screening</small>
+</footer>
+
+<script>
+  // -------------------------------
+  // 🔍 Extract UID from query (?uid=...)
+  // -------------------------------
+  const urlParams = new URLSearchParams(window.location.search);
+  const uid = urlParams.get("uid") || "";
+
+  let activeType = "patient";
+  let kannadaMode = false; // toggle state
+
+  function setActiveTab(t) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + t).classList.add('active');
+    activeType = t;
+  }
+
+  function showReport(type) {
+    setActiveTab(type);
+    const langSuffix = kannadaMode ? "_kn" : "_en";
+    const filePath = `/static/reports/${type}_reports/${uid}_${type}_report${langSuffix}.pdf`;
+    const iframe = document.getElementById("reportFrame");
+
+    fetch(filePath, { method: "HEAD" }) // Check if file exists
+      .then(res => {
+        if (res.ok) {
+          iframe.src = filePath;
+        } else {
+          iframe.src = "about:blank";
+          iframe.contentDocument?.write("<p style='text-align:center;margin-top:30px;color:#555;'>❌ Report not available. Try regenerating it.</p>");
+        }
+      })
+      .catch(() => {
+        iframe.src = "about:blank";
+        iframe.contentDocument?.write("<p style='text-align:center;margin-top:30px;color:#555;'>⚠️ Unable to load report.</p>");
+      });
+
+    // Update download link dynamically
+    document.getElementById("downloadBtn").onclick = () => {
+      window.open(`/download/${type}/${uid}${langSuffix}`, "_blank");
+    };
+  }
+
+  // On page load, show the patient report by default
+  window.onload = () => {
+    if (!uid) return;
+    showReport("patient");
+  };
+
+  // -------------------------------
+  // 🌐 Kannada Mode Toggle
+  // -------------------------------
+  const translateToggle = document.getElementById("translateToggle");
+  translateToggle.addEventListener("click", () => {
+    kannadaMode = !kannadaMode;
+    translateToggle.textContent = kannadaMode ? "🌐 Kannada Mode: ON" : "🌐 Kannada Mode: OFF";
+    showReport(activeType); // refresh view
+  });
+</script>
+</body>
+</html>

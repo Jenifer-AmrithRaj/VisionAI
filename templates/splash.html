@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VisionAI — Initializing...</title>
+
+  <!-- ✅ PWA Manifest + Service Worker -->
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service_worker.js')
+        .then(() => console.log('✅ VisionAI Service Worker Registered'))
+        .catch(err => console.log('❌ Service Worker Failed:', err));
+    }
+  </script>
+
+  <style>
+    /* 🌈 Background animation */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #e0f7ff 0%, #f8fbff 100%);
+      animation: gradientPulse 6s ease-in-out infinite alternate;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+    }
+
+    @keyframes gradientPulse {
+      0% { background: linear-gradient(135deg, #e0f7ff 0%, #f8fbff 100%); }
+      100% { background: linear-gradient(135deg, #d2f0ff 0%, #eaf6ff 100%); }
+    }
+
+    /* 🩺 VisionAI Logo Animation */
+    .splash-logo {
+      width: 180px;
+      height: auto;
+      opacity: 0;
+      transform: scale(0.9);
+      animation: fadeInLogo 2.5s ease forwards;
+      filter: drop-shadow(0 0 15px rgba(0, 119, 182, 0.3));
+    }
+
+    @keyframes fadeInLogo {
+      0% { opacity: 0; transform: scale(0.9); filter: brightness(0.7); }
+      60% { opacity: 1; transform: scale(1.05); filter: brightness(1.1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* 🌟 VisionAI Text */
+    .splash-text {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-top: 15px;
+      color: #0077b6;
+      text-shadow: 0 0 10px rgba(0, 119, 182, 0.2);
+      opacity: 0;
+      animation: fadeInText 3s ease forwards 1.5s;
+    }
+
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 🧬 Tagline */
+    .splash-sub {
+      font-size: 1rem;
+      color: #005f8f;
+      margin-top: 5px;
+      opacity: 0;
+      animation: fadeInSub 2.5s ease forwards 2.5s;
+    }
+
+    @keyframes fadeInSub {
+      0% { opacity: 0; transform: translateY(5px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 🚀 Loading indicator */
+    .loader {
+      margin-top: 30px;
+      width: 50px;
+      height: 50px;
+      border: 4px solid #c7e8f5;
+      border-top: 4px solid #0077b6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      opacity: 0;
+      animation: spin 1s linear infinite, fadeInLoader 2s ease forwards 3s;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeInLoader {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* ✨ Fade out before redirect */
+    .fade-out {
+      opacity: 0;
+      transform: scale(1.05);
+      transition: all 1s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="{{ url_for('static', filename='visionai_logo.png') }}" class="splash-logo" alt="VisionAI Logo">
+  <div class="splash-text">VisionAI</div>
+  <div class="splash-sub">AI-Powered Retinal Screening</div>
+  <div class="loader"></div>
+
+  <!-- 🌟 Smart Redirect Logic -->
+  <script>
+    window.addEventListener("load", function() {
+      setTimeout(() => {
+        document.body.classList.add('fade-out');
+
+        setTimeout(() => {
+          {% if session.get('user_name') %}
+            // ✅ Already logged in → go to Welcome screen
+            window.location.href = "{{ url_for('welcome') }}";
+          {% else %}
+            // 🚪 Not logged in → go to Login page
+            window.location.href = "{{ url_for('login') }}";
+          {% endif %}
+        }, 900);
+
+      }, 4000); // Delay for splash animations
+    });
+  </script>
+</body>
+</html>

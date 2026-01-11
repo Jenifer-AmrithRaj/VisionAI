@@ -1,0 +1,71 @@
+{
+  "uid": "f5c1d462",
+  "metadata": {
+    "Full_Name": "sebastain",
+    "Age": "89",
+    "Gender": "Male",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "432",
+    "BMI": "30",
+    "Duration": "19",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "300",
+    "HbA1c": "8.9",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "3",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "NO_DR",
+    "confidence": 84.32,
+    "risk_score": 1.0
+  },
+  "probs": {
+    "cnn": [
+      0.9547113180160522,
+      0.008773685432970524,
+      0.011920971795916557,
+      0.01217014528810978,
+      0.012423889711499214
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.8432091672330349,
+      0.03785998590708696,
+      0.039197415261363736,
+      0.03891583475698731,
+      0.04081759684152717
+    ]
+  },
+  "lesion_stats": {},
+  "images": {
+    "original": "uploads\\f5c1d462.png",
+    "processed": "static\\processed_images\\f5c1d462_processed.png",
+    "gradcam": "",
+    "lime": "",
+    "shap": ""
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2026-01-11T11:19:00.003299+00:00",
+  "reports": {
+    "patient_en": "Patient Name: sebastain\n\nResult Summary:\nNo signs of diabetic retinopathy were detected in the analyzed retinal image.\n\nClinical Interpretation:\nYour retina appears healthy, with no visible microvascular damage related to diabetes. This indicates a very low current risk of diabetic eye disease.\n\nRecommendations:\n- Continue routine annual retinal screening.\n- Maintain good blood sugar, blood pressure, and cholesterol control.\n- Seek medical attention if you notice visual symptoms such as blur, floaters, or flashes.\n\nConfidence Level: 84.32%\nEstimated Risk: Minimal\n\nVisionAI provides decision-support only and does not replace clinical examination.",
+    "doctor_en": "Clinical Report — Ophthalmology\n\nPatient: sebastain\n\nAutomated Assessment:\nNo diabetic retinopathy detected.\n\nClinical Interpretation:\nNo microaneurysms, hemorrhages, exudates, or neovascular features were identified. Explainability analysis and lesion quantification were intentionally skipped due to absence of pathological findings.\n\nRecommendation:\nRoutine annual screening is advised unless additional clinical risk factors exist.\n\nModel Confidence: 84.32%",
+    "research_en": "Research Notes\n\nUID: f5c1d462\n\nPrediction Outcome:\nNO_DR — no pathological features detected.\n\nPipeline Behavior:\nLesion quantification and explainability modules were bypassed by design to avoid false interpretation in normal cases.\n\nInference Device: CPU\n\nThis behavior is intentional and clinically aligned.",
+    "patient_kn": "",
+    "doctor_kn": "",
+    "research_kn": ""
+  }
+}

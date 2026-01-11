@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "Full_Name": "John Doe",
+    "Age": 55,
+    "Gender": "Male",
+    "BMI": 29,
+    "Hypertension": "Yes",
+    "Smoking": "No",
+    "HbA1c": "8.6"
+  },
+  "prediction": {
+    "predicted_stage": "MODERATE",
+    "confidence": 0.85
+  },
+  "lesion_stats": {
+    "exudates": 2.5,
+    "hemorrhages": 5.0
+  },
+  "model_metrics": {
+    "Accuracy": 0.93,
+    "F1-score": 0.88,
+    "AUC/ROC": 0.95
+  },
+  "images": {
+    "original": "sample_imgs/original.png",
+    "processed": "sample_imgs/processed.png",
+    "gradcam": "sample_imgs/gradcam.png",
+    "lime": "sample_imgs/lime.png",
+    "shap": "sample_imgs/shap.png"
+  },
+  "nlp_patient": "Moderate diabetic retinal changes are present. There is evidence of vascular leakage and small hemorrhages.\n\nCloser follow-up (3–6 months) is advised along with systemic risk review. Key systemic risk factors:\n\nhypertension. Detected lesion highlights: exudates (2.50%), hemorrhages (5.00%). Reported model accuracy:\n\n0.93. Arrange ophthalmology follow-up in 3–6 months; consider OCT if macular edema suspected.\n\nModerate diabetic retinal changes are present. There is evidence of vascular leakage and small hemorrhages.\n\nCloser follow-up (3–6 months) is advised along with systemic risk review. Key systemic risk factors:\n\nhypertension. Detected lesion highlights: exudates (2.50%), hemorrhages (5.00%). Reported model accuracy:\n\n0.93. Arrange ophthalmology follow-up in 3–6 months; consider OCT if macular edema suspected.",
+  "nlp_doctor": "Moderate NPDR: multiple dot-blot hemorrhages and leak indications. Recommend 3–6 month surveillance and OCT if\n\nmacular edema suspected. Lesion metrics: exudates=2.5, hemorrhages=5.0 The heatmap does not show a\n\nconcentrated activation; evidence is distributed. Recommended actions: Arrange ophthalmology follow-up in 3–6\n\nmonths; consider OCT if macular edema suspected.\n\nModerate NPDR: multiple dot-blot hemorrhages and leak indications. Recommend 3–6 month surveillance and OCT if\n\nmacular edema suspected. Lesion metrics: exudates=2.5, hemorrhages=5.0 The heatmap does not show a\n\nconcentrated activation; evidence is distributed. Recommended actions: Arrange ophthalmology follow-up in 3–6\n\nmonths; consider OCT if macular edema suspected.",
+  "nlp_research": "Model classification: MODERATE NPDR. GradCAM activation commonly centered around macula and adjacent temporal\n\nregions. Model metrics: Accuracy=0.93, F1-score=0.88, AUC/ROC=0.95 Heatmap intensity score: 0.00\n\nModel classification: MODERATE NPDR. GradCAM activation commonly centered around macula and adjacent temporal\n\nregions. Model metrics: Accuracy=0.93, F1-score=0.88, AUC/ROC=0.95 Heatmap intensity score: 0.00",
+  "language_mode": "bilingual",
+  "algorithm_note": "VisionAI offline bilingual reporting engine."
+}

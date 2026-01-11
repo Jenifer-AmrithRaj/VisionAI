@@ -1,0 +1,70 @@
+{
+  "uid": "35cb1659",
+  "metadata": {
+    "Full_Name": "solomon",
+    "Age": "78",
+    "Gender": "Male",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "235",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 83.6,
+    "risk_score": 95.42
+  },
+  "probs": {
+    "cnn": [
+      0.01661859080195427,
+      0.009372644126415253,
+      0.012959725223481655,
+      0.9499325752258301,
+      0.011116418056190014
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.04583035825762507,
+      0.03836910264489016,
+      0.04008035760254893,
+      0.8360139336333661,
+      0.03970624786156982
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 4.293,
+    "hemorrhages": 2.505,
+    "cotton_wool": 0.0,
+    "microaneurysms": 17.095,
+    "neovascularization": 25.0,
+    "total_lesion_load": 23.893
+  },
+  "images": {
+    "original": "uploads\\35cb1659.png",
+    "processed": "static\\processed_images\\35cb1659_processed.png",
+    "gradcam": "static/xai_outputs/35cb1659_gradcam.jpg",
+    "lime": "static/xai_outputs/35cb1659_lime.png",
+    "shap": "static/xai_outputs/35cb1659_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-12T04:05:30.222290+00:00"
+}

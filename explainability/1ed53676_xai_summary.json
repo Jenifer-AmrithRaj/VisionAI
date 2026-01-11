@@ -1,0 +1,75 @@
+{
+  "uid": "1ed53676",
+  "metadata": {
+    "Full_Name": "Jenifer",
+    "Age": "56",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 83.6,
+    "risk_score": 95.42
+  },
+  "probs": {
+    "cnn": [
+      0.01661859080195427,
+      0.009372644126415253,
+      0.012959725223481655,
+      0.9499325752258301,
+      0.011116418056190014
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.04583035825762507,
+      0.03836910264489016,
+      0.04008035760254893,
+      0.8360139336333661,
+      0.03970624786156982
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 0.169,
+    "hemorrhages": 7.567,
+    "cotton_wool": 0.0,
+    "lesion_percentage": 7.736
+  },
+  "images": {
+    "original": "uploads\\1ed53676.png",
+    "processed": "static\\processed_images\\1ed53676_processed.png",
+    "gradcam": "static/xai_outputs/1ed53676_gradcam.jpg",
+    "lime": "static/xai_outputs/1ed53676_lime.png",
+    "shap": "static/xai_outputs/1ed53676_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-11T02:42:19.501435",
+  "nlp_patient": "Severe retinal changes present; urgent specialist review needed.\n\nHigh risk for progression—seek ophthalmology within days/weeks.\n\nKey systemic risk factors: Smoking, Hypertension, Obesity (BMI ≥ 30).\n\nLesion coverage: 7.74% (automated estimate).\n\nExudates: 0.17%\n\nHemorrhages: 7.57%\n\nCotton wool: 0.00%\n\nSuggested actions:\n\nUrgent retinal referral.\n\nPrepare for intervention if indicated.",
+  "nlp_doctor": "Severe NPDR with widespread hemorrhages; consider expedited referral.\n\nCoordinate systemic risk optimization (HbA1c, BP).\n\nLesion coverage: 7.74% (automated estimate).\n\nExudates: 0.17%\n\nHemorrhages: 7.57%\n\nCotton wool: 0.00%\n\nModel metrics:\n\nAccuracy: 0.947\n\nF1-score: 0.938\n\nAUC/ROC: 0.971\n\nRecommended actions:\n\nUrgent retinal referral.\n\nPrepare for intervention if indicated.",
+  "nlp_research": "High confidence severe cases flagged; prioritize in pipeline.\n\nStage: SEVERE\n\nConfidence: 83.6\n\nAccuracy: 0.947\n\nF1-score: 0.938\n\nAUC/ROC: 0.971",
+  "nlp_patient_kn": "ರೆಟಿನಾದ ತೀವ್ರ ಬದಲಾವಣೆಗಳಿವೆ; ತುರ್ತು ತಜ್ಞರ ಪರಿಶೀಲನೆ ಅಗತ್ಯವಿದೆ.\n\nಪ್ರಗತಿಗೆ ಹೆಚ್ಚಿನ ಅಪಾಯ - ದಿನಗಳು/ವಾರಗಳಲ್ಲಿ ನೇತ್ರವಿಜ್ಞಾನವನ್ನು ಹುಡುಕುವುದು.\n\nಪ್ರಮುಖ ವ್ಯವಸ್ಥಿತ ಅಪಾಯಕಾರಿ ಅಂಶಗಳು: ಧೂಮಪಾನ, ಅಧಿಕ ರಕ್ತದೊತ್ತಡ, ಬೊಜ್ಜು (BMI ≥30).\n\nಲೆಸಿಯಾನ್ ಕವರೇಜ್: 7.74% (ಸ್ವಯಂಚಾಲಿತ ಅಂದಾಜು).\n\nಹೊರಸೂಸುವಿಕೆಗಳು: 0.17%\n\nರಕ್ತಸ್ರಾವಗಳು: 7.57%\n\nಹತ್ತಿ ಉಣ್ಣೆ: 0.00%\n\nಸೂಚಿಸಿದ ಕ್ರಮಗಳು:\n\nತುರ್ತು ರೆಟಿನಲ್ ಉಲ್ಲೇಖ.\n\nಸೂಚಿಸಿದರೆ ಹಸ್ತಕ್ಷೇಪಕ್ಕೆ ಸಿದ್ಧರಾಗಿ.",
+  "nlp_doctor_kn": "ವ್ಯಾಪಕವಾದ ರಕ್ತಸ್ರಾವಗಳೊಂದಿಗೆ ತೀವ್ರವಾದ NPDR; ತ್ವರಿತ ಉಲ್ಲೇಖವನ್ನು ಪರಿಗಣಿಸಿ.\n\nವ್ಯವಸ್ಥಿತ ಅಪಾಯದ ಆಪ್ಟಿಮೈಸೇಶನ್ ಅನ್ನು ಸಂಘಟಿಸಿ (HbA1c, BP).\n\nಲೆಸಿಯಾನ್ ಕವರೇಜ್: 7.74% (ಸ್ವಯಂಚಾಲಿತ ಅಂದಾಜು).\n\nಹೊರಸೂಸುವಿಕೆಗಳು: 0.17%\n\nರಕ್ತಸ್ರಾವಗಳು: 7.57%\n\nಹತ್ತಿ ಉಣ್ಣೆ: 0.00%\n\nಮಾದರಿ ಮೆಟ್ರಿಕ್ಸ್:\n\nನಿಖರತೆ: 0.947\n\nF1-ಸ್ಕೋರ್: 0.938\n\nAUC/ROC: 0.971\n\nಶಿಫಾರಸು ಮಾಡಲಾದ ಕ್ರಮಗಳು:\n\nತುರ್ತು ರೆಟಿನಲ್ ಉಲ್ಲೇಖ.\n\nಸೂಚಿಸಿದರೆ ಹಸ್ತಕ್ಷೇಪಕ್ಕೆ ಸಿದ್ಧರಾಗಿ.",
+  "nlp_research_kn": "ಹೆಚ್ಚಿನ ಆತ್ಮವಿಶ್ವಾಸದ ತೀವ್ರ ಪ್ರಕರಣಗಳನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಾಡಲಾಗಿದೆ; ಪೈಪ್ಲೈನ್ನಲ್ಲಿ ಆದ್ಯತೆ ನೀಡಿ.\n\nಹಂತ: ತೀವ್ರ\n\nವಿಶ್ವಾಸ: 83.6\n\nನಿಖರತೆ: 0.947\n\nF1-ಸ್ಕೋರ್: 0.938\n\nAUC/ROC: 0.971",
+  "language_mode": "bilingual"
+}

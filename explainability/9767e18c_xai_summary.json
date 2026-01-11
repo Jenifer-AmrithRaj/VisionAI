@@ -1,0 +1,78 @@
+{
+  "uid": "9767e18c",
+  "metadata": {
+    "Full_Name": "Sebastian",
+    "Age": "89",
+    "Gender": "Male",
+    "Systolic": "190",
+    "Diastolic": "110",
+    "Glucose_Level": "190",
+    "BMI": "30.1",
+    "Duration": "19",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "203",
+    "HbA1c": "8.5",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "4",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "PDR",
+    "confidence": 85.74,
+    "risk_score": 96.05
+  },
+  "probs": {
+    "cnn": [
+      0.009146252647042274,
+      0.007499577943235636,
+      0.005429462064057589,
+      0.004857202991843224,
+      0.9730675220489502
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.039478868418132744,
+      0.03677699431733438,
+      0.033679631824038825,
+      0.032699833652201006,
+      0.857364671788293
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 21.524,
+    "hemorrhages": 2.557,
+    "cotton_wool": 0.0,
+    "microaneurysms": 20.308,
+    "neovascularization": 30.0,
+    "total_lesion_load": 44.389
+  },
+  "images": {
+    "original": "uploads\\9767e18c.png",
+    "processed": "static\\processed_images\\9767e18c_processed.png",
+    "gradcam": "static/xai_outputs/9767e18c_gradcam.jpg",
+    "lime": "static/xai_outputs/9767e18c_lime.png",
+    "shap": "static/xai_outputs/9767e18c_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-12-04T07:45:52.150475+00:00",
+  "reports": {
+    "patient_en": "Patient: Sebastian\n\nSummary:\n- Detected stage: Pdr\n- Model confidence: 85.74%\n- Estimated retinal risk score: 96.05%\n\nInterpretation:\nAdvanced (proliferative) changes are present. This requires urgent specialist attention to reduce risk of vision loss.\n\nFindings (automated lesion summary):\n- Microaneurysms: 20.31%; Exudates: 21.52%; Hemorrhages: 2.56%; Cotton Wool: 0.00%; Neovascularization: 30.00%; Total Lesion Load: 44.39%\n\nAdvice / Next steps:\n1. Schedule follow-up as advised by your local eye care provider.\n2. Keep blood sugar and blood pressure under control.\n3. Report any sudden visual changes (blur, floaters, flashes) immediately.\n\nLifestyle notes:\n- Maintain balanced diet, exercise, avoid smoking, and adhere to medication.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_en": "Clinical Report — Ophthalmologist\n\nPatient: Name: Sebastian, Age: 89, BMI: 30.1\nPredicted stage: PDR\nModel confidence: 85.74%\nRisk score: 96.05%\n\nFindings (automated lesion quantification):\n- Microaneurysms: 20.31%\n- Exudates: 21.52%\n- Hemorrhages: 2.56%\n- Cotton Wool: 0.00%\n- Neovascularization: 30.00%\n- Total Lesion Load: 44.39%\n\nClinical interpretation:\nFeatures consistent with proliferative DR (neovascularization). Immediate retina specialist referral recommended (consider anti-VEGF / PRP).\n\nModel & Explainability:\n- Multi-model fusion: CNN ensemble (EfficientNet, ResNet50, ViT) + metadata models (RF, XGBoost, stacked ensemble).\n- Explainability outputs available: GradCAM++, LIME, SHAP — review heatmaps and overlay masks.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nSuggested clinical action items:\n1. Correlate with slit-lamp exam and fundus exam.\n2. If macular edema suspected, obtain OCT imaging.\n3. For suspected PDR, arrange urgent retina referral for potential PRP/anti-VEGF.\n4. Document lesion masks if available for audit.",
+    "research_en": "Research Notes\n\nUID: 9767e18c\nPredicted stage: PDR\nConfidence: 85.74%\nRisk score: 96.05%\n\nModel stack & inference\n- CNN ensemble: EfficientNet, ResNet50, ViT\n- Metadata models: Random Forest, XGBoost, Stacked ensemble\n- Fusion method: weighted averaging with risk calibration\n- Inference device: CPU\n\nExplainability & lesion quantification:\n- Microaneurysms: 20.31%\n- Exudates: 21.52%\n- Hemorrhages: 2.56%\n- Cotton Wool: 0.00%\n- Neovascularization: 30.00%\n- Total Lesion Load: 44.39%\n\nSHAP / feature importance: check SHAP plots for systemic features (HbA1c, BMI, BP).\n\nProbability vectors:\n- CNN: [0.009146252647042274, 0.007499577943235636, 0.005429462064057589, 0.004857202991843224, 0.9730675220489502]\n- ML : [0.21136369507961952, 0.20268235745827803, 0.19376393050773666, 0.19047474400645248, 0.20171527294791336]\n- Fused: [0.039478868418132744, 0.03677699431733438, 0.033679631824038825, 0.032699833652201006, 0.857364671788293]\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nResearch recommendations:\n1. Validate lesion segmentation / cotton-wool detection against annotated masks (report dice/IoU).\n2. Add cotton-wool-spot specific augmentation and mask labels if false negatives observed.\n3. Measure GradCAM heatmap overlap (IoU) with human heatmaps for explainability calibration.\n4. Consider temporal models for progressive DR tracking and early-warning signals.",
+    "patient_kn": "Patient: Sebastian\n\nSummary:\n- Detected stage: Pdr\n- Model confidence: 85.74%\n- Estimated retinal risk score: 96.05%\n\nInterpretation:\nAdvanced (proliferative) changes are present. This requires urgent specialist attention to reduce risk of vision loss.\n\nFindings (automated lesion summary):\n- Microaneurysms: 20.31%; Exudates: 21.52%; Hemorrhages: 2.56%; Cotton Wool: 0.00%; Neovascularization: 30.00%; Total Lesion Load: 44.39%\n\nAdvice / Next steps:\n1. Schedule follow-up as advised by your local eye care provider.\n2. Keep blood sugar and blood pressure under control.\n3. Report any sudden visual changes (blur, floaters, flashes) immediately.\n\nLifestyle notes:\n- Maintain balanced diet, exercise, avoid smoking, and adhere to medication.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_kn": "Clinical Report — Ophthalmologist\n\nPatient: Name: Sebastian, Age: 89, BMI: 30.1\nPredicted stage: PDR\nModel confidence: 85.74%\nRisk score: 96.05%\n\nFindings (automated lesion quantification):\n- Microaneurysms: 20.31%\n- Exudates: 21.52%\n- Hemorrhages: 2.56%\n- Cotton Wool: 0.00%\n- Neovascularization: 30.00%\n- Total Lesion Load: 44.39%\n\nClinical interpretation:\nFeatures consistent with proliferative DR (neovascularization). Immediate retina specialist referral recommended (consider anti-VEGF / PRP).\n\nModel & Explainability:\n- Multi-model fusion: CNN ensemble (EfficientNet, ResNet50, ViT) + metadata models (RF, XGBoost, stacked ensemble).\n- Explainability outputs available: GradCAM++, LIME, SHAP — review heatmaps and overlay masks.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nSuggested clinical action items:\n1. Correlate with slit-lamp exam and fundus exam.\n2. If macular edema suspected, obtain OCT imaging.\n3. For suspected PDR, arrange urgent retina referral for potential PRP/anti-VEGF.\n4. Document lesion masks if available for audit.",
+    "research_kn": "Research Notes\n\nUID: 9767e18c\nPredicted stage: PDR\nConfidence: 85.74%\nRisk score: 96.05%\n\nModel stack & inference\n- CNN ensemble: EfficientNet, ResNet50, ViT\n- Metadata models: Random Forest, XGBoost, Stacked ensemble\n- Fusion method: weighted averaging with risk calibration\n- Inference device: CPU\n\nExplainability & lesion quantification:\n- Microaneurysms: 20.31%\n- Exudates: 21.52%\n- Hemorrhages: 2.56%\n- Cotton Wool: 0.00%\n- Neovascularization: 30.00%\n- Total Lesion Load: 44.39%\n\nSHAP / feature importance: check SHAP plots for systemic features (HbA1c, BMI, BP).\n\nProbability vectors:\n- CNN: [0.009146252647042274, 0.007499577943235636, 0.005429462064057589, 0.004857202991843224, 0.9730675220489502]\n- ML : [0.21136369507961952, 0.20268235745827803, 0.19376393050773666, 0.19047474400645248, 0.20171527294791336]\n- Fused: [0.039478868418132744, 0.03677699431733438, 0.033679631824038825, 0.032699833652201006, 0.857364671788293]\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nResearch recommendations:\n1. Validate lesion segmentation / cotton-wool detection against annotated masks (report dice/IoU).\n2. Add cotton-wool-spot specific augmentation and mask labels if false negatives observed.\n3. Measure GradCAM heatmap overlap (IoU) with human heatmaps for explainability calibration.\n4. Consider temporal models for progressive DR tracking and early-warning signals."
+  }
+}

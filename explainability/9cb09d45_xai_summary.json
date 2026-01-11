@@ -1,0 +1,71 @@
+{
+  "uid": "9cb09d45",
+  "metadata": {
+    "Full_Name": "Jenifer",
+    "Age": "56",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 81.3,
+    "risk_score": 95.62
+  },
+  "probs": {
+    "cnn": [
+      0.014264562167227268,
+      0.016130192205309868,
+      0.03870508447289467,
+      0.9228987097740173,
+      0.00800147745758295
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.04382943113258585,
+      0.04411301601546904,
+      0.061963910004661324,
+      0.8130350968875717,
+      0.037058545959712155
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 13.447,
+    "hemorrhages": 16.828,
+    "cotton_wool": 0.0,
+    "lesion_percentage": 30.275
+  },
+  "images": {
+    "original": "uploads\\9cb09d45.png",
+    "processed": "static\\processed_images\\9cb09d45_processed.png",
+    "gradcam": "static/xai_outputs/9cb09d45_gradcam.jpg",
+    "lime": "static/xai_outputs/9cb09d45_lime.png",
+    "shap": "static/xai_outputs/9cb09d45_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-11T04:18:31.531833+00:00",
+  "nlp_patient": "Hello Jenifer,\n\nSevere diabetic changes are seen. It’s important to meet your eye doctor soon.\n\nDetected stage: Severe diabetic retinopathy.\n\nFindings summary: exudates 13.4%, hemorrhages 16.8%, cotton wool 0.0%, lesion percentage 30.3%.\nModel confidence: N/A.\nRisk factors noted: smoking, high blood pressure, obesity (BMI ≥ 30).\n\nNext steps: Book an ophthalmology appointment as soon as possible for further evaluation.\n\nRemember — early attention helps preserve your vision. 💙",
+  "nlp_doctor": "VisionAI Report for Jenifer (Age: 56, BP: N/A, BMI: 30.8)\n\nStage: SEVERE diabetic retinopathy.\nSummary: Widespread hemorrhages and venous beading — likely severe NPDR.\nAutomated lesion analysis: exudates 13.4%, hemorrhages 16.8%, cotton wool 0.0%, lesion percentage 30.3%.\nConfidence: N/A, AUC: N/A.\nIdentified systemic risks: smoking, high blood pressure, obesity (BMI ≥ 30).\n\nRecommendation: Urgent ophthalmology referral; systemic optimization.\n\nNote: Correlate with clinical findings and patient history. Review Grad-CAM heatmaps if available.",
+  "nlp_research": "Subject: Jenifer\nPredicted Stage: Severe\nLesion Summary: exudates 13.4%, hemorrhages 16.8%, cotton wool 0.0%, lesion percentage 30.3%\nModel Confidence: N/A, AUC: N/A, GradCAM: not available\n\nAnalytical Notes: High lesion density and heatmap coverage; model consistent with severe NPDR probability curve.\n\nResearch Recommendations:\n- Validate lesion segmentation overlap with expert mask.\n- Include in next retraining batch to improve stage balance.\n- Evaluate GradCAM region fidelity against human grading heatmaps."
+}

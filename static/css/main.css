@@ -1,0 +1,231 @@
+/* File: static/css/main.css
+   Purpose: Core style for VisionAI PWA.
+   Palette: teal/blue medical theme (refreshed).
+   Responsive + minimal animations.
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(180deg, #f3fbfd 0%, #e8f8fc 50%, #ffffff 100%);
+  color: #0b253a;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  min-height: 100%;
+}
+
+/* Container helper */
+.container {
+  width: 92%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+  background: linear-gradient(90deg, #00b4d8, #0077b6);
+  border-bottom: none;
+  box-shadow: 0 2px 8px rgba(0, 90, 140, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+.logo {
+  height: 48px;
+  width: 48px;
+  margin-right: 0.6rem;
+}
+.brand-text .app-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+.tagline {
+  font-size: 0.8rem;
+  color: #caf0f8;
+}
+
+/* Nav */
+.nav a {
+  margin-left: 0.8rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: #e0faff;
+}
+.nav a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255,255,255,0.6);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #00b4d8, #0096c7);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 180, 216, 0.3);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0096c7, #0077b6);
+  box-shadow: 0 6px 16px rgba(0, 180, 216, 0.4);
+}
+.btn-outline {
+  border: 2px solid #00b4d8;
+  color: #00b4d8;
+  background: transparent;
+}
+.btn-outline:hover {
+  background-color: #00b4d8;
+  color: #fff;
+}
+.btn-secondary {
+  background-color: #caf0f8;
+  color: #0077b6;
+}
+.btn-secondary:hover {
+  background-color: #ade8f4;
+}
+.btn.large {
+  font-size: 1.1rem;
+  padding: 0.8rem 1.6rem;
+}
+
+/* Hero */
+.hero {
+  padding: 3rem 0 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(160deg, #e0f7fa 0%, #ffffff 100%);
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.hero-left h2 {
+  font-size: 1.7rem;
+  color: #023e8a;
+  margin-bottom: 0.75rem;
+}
+.lead {
+  margin-bottom: 1rem;
+  color: #0b253a;
+}
+.features {
+  list-style-type: disc;
+  margin: 1rem 0 1.2rem 1.2rem;
+  color: #1a1a1a;
+}
+.hero-cta {
+  margin-top: 1.2rem;
+}
+.credit {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Right side mock */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.device-card {
+  background: linear-gradient(145deg, #ffffff, #e9f8fb);
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 1.2rem;
+  text-align: center;
+  animation: float 5s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.device-screenshot img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.5rem;
+}
+.mock-caption {
+  font-size: 0.85rem;
+  color: #0466c8;
+  margin-bottom: 0.75rem;
+}
+.tips {
+  background: #f0fbff;
+  border-left: 4px solid #00b4d8;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.tips h4 {
+  color: #0077b6;
+  margin-bottom: 0.4rem;
+}
+.tips li {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Footer */
+.site-footer {
+  background: linear-gradient(180deg, #0077b6, #023e8a);
+  color: #caf0f8;
+  border-top: none;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+}
+.site-footer span {
+  color: #90e0ef;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .hero-right {
+    order: -1;
+  }
+  .logo {
+    height: 40px;
+    width: 40px;
+  }
+  .hero-left h2 {
+    font-size: 1.3rem;
+  }
+  .features {
+    font-size: 0.95rem;
+  }
+}

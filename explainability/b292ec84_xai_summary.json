@@ -1,0 +1,78 @@
+{
+  "uid": "b292ec84",
+  "metadata": {
+    "Full_Name": "solomon",
+    "Age": "78",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 82.87,
+    "risk_score": 95.54
+  },
+  "probs": {
+    "cnn": [
+      0.015175404958426952,
+      0.007805488537997007,
+      0.01563865877687931,
+      0.9413096308708191,
+      0.020070824772119522
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.04460364817647655,
+      0.03703701862682426,
+      0.04235744925149287,
+      0.8286843922651078,
+      0.047317491680098384
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 3.112,
+    "hemorrhages": 0.732,
+    "cotton_wool": 0.002,
+    "microaneurysms": 0.531,
+    "neovascularization": 2.557,
+    "total_lesion_load": 6.934
+  },
+  "images": {
+    "original": "uploads\\b292ec84.png",
+    "processed": "static\\processed_images\\b292ec84_processed.png",
+    "gradcam": "static/xai_outputs/b292ec84_gradcam.jpg",
+    "lime": "static/xai_outputs/b292ec84_lime.png",
+    "shap": "static/xai_outputs/b292ec84_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-11T08:18:40.762136+00:00",
+  "reports": {
+    "patient_en": "Patient: solomon\n\nSummary:\n- Detected stage: Severe.\n- Model confidence: 82.87%\n- Estimated retinal risk score: 95.54%\n\nKey findings and advice:\n1. Maintain regular eye follow-ups as recommended by your clinician.\n2. Tight control of blood sugar and blood pressure reduces progression risk.\n3. Maintain a healthy lifestyle (balanced diet, physical activity, avoid smoking).\n4. If you notice sudden vision changes, floaters, or flashes, seek urgent care.\n\nSevere changes are visible. Please seek ophthalmology review soon for possible specialist management.\n\nPractical precautions:\n- Carry out routine screening exams (as advised).\n- Keep record of blood glucose/HbA1c and bring to appointments.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_en": "Clinical Report\n\nPatient stage: Severe\nModel confidence: 82.87%\nRisk score: 95.54%\n\nPatient metadata:\n- Name: solomon\n- Age: 78, Gender: Female\n\nFindings (lesion breakdown):\n- Microaneurysms: 53.10%\n- Exudates: 3.11%\n- Hemorrhages: 73.20%\n- Cotton wool spots: 0.20%\n- Neovascularization: 2.56%\n- Total Lesion Load: 6.93%\n\nClinical interpretation:\n- Extensive hemorrhages/venous beading consistent with severe NPDR; urgent ophthalmology review advised.\n\nModel and explainability:\n- Multi-model fusion: CNN ensemble (EfficientNet, ResNet50, ViT) and metadata models (RF, XGBoost, stacked ensemble).\n- Explainability overlays provided: GradCAM++, LIME, SHAP — please review heatmaps and processed images.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nRecommendations:\n1. Correlate with clinical exam and OCT if macular edema suspected.\n2. If PDR suspected, urgent retina referral recommended.\n3. Consider documenting lesion masks/annotations for further audit.\n",
+    "research_en": "Research Notes\n\nUID: b292ec84\nPredicted stage: SEVERE\nConfidence: 82.87%\nRisk score: 95.54%\n\nModel stack and fusion:\n- CNN ensemble: EfficientNet, ResNet50, ViT\n- Metadata models: Random Forest, XGBoost, Stacked ensemble\n- Fusion method: weighted averaging with risk calibration\n- Inference device: CPU\n\nLesion stats (approx):\n- Microaneurysms: 53.10%\n- Exudates: 3.11%\n- Hemorrhages: 73.20%\n- Cotton wool spots: 0.20%\n- Neovascularization: 2.56%\n- Total Lesion Load: 6.93%\n\nExplainability summary:\n- GradCAM++ / LIME: highlight posterior pole lesion regions (exudates/hemorrhages).\n- SHAP: systemic features (HbA1c, BMI, BP) often show high importance for risk estimation.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nProbability vectors:\n- CNN probs: [0.015175404958426952, 0.007805488537997007, 0.01563865877687931, 0.9413096308708191, 0.020070824772119522]\n- ML probs: [0.21136369507961952, 0.20268235745827803, 0.19376393050773666, 0.19047474400645248, 0.20171527294791336]\n- Fused probs: [0.04460364817647655, 0.03703701862682426, 0.04235744925149287, 0.8286843922651078, 0.047317491680098384]\n\nResearch recommendations:\n1. Validate lesion segmentation / cotton-wool detection with additional labeled examples and augmentations.\n2. Add cotton-wool-spot specific augmentation and mask labels to address false negatives.\n3. Measure GradCAM / heatmap IoU against human heatmaps for model explainability calibration.\n4. Consider time-series modelling for progression analysis (longitudinal pipeline).\n",
+    "patient_kn": "ನಮಸ್ಕಾರ ಸೊಲೊಮನ್,\n\nತೀವ್ರ ಮಧುಮೇಹ ಬದಲಾವಣೆಗಳು ಕಂಡುಬರುತ್ತವೆ. ಶೀಘ್ರದಲ್ಲೇ ನಿಮ್ಮ ಕಣ್ಣಿನ ವೈದ್ಯರನ್ನು ಭೇಟಿ ಮಾಡುವುದು ಮುಖ್ಯ.\n\nಪತ್ತೆಯಾದ ಹಂತ: ತೀವ್ರ ಡಯಾಬಿಟಿಕ್ ರೆಟಿನೋಪತಿ.\n\nಸಂಶೋಧನೆಗಳ ಸಾರಾಂಶ: ಹೊರಸೂಸುವಿಕೆಗಳು 3.1%, ಹೆಮರೇಜ್ಗಳು 73.2%, ಹತ್ತಿ ಉಣ್ಣೆ 0.2%, ಮೈಕ್ರೊಅನ್ಯೂರಿಸಮ್ಗಳು 53.1%, ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್ 2.6%, ಒಟ್ಟು ಲೆಸಿಯಾನ್ ಲೋಡ್ 6.9%.\nಮಾದರಿ ವಿಶ್ವಾಸ: N/A.\nಅಪಾಯಕಾರಿ ಅಂಶಗಳನ್ನು ಗಮನಿಸಲಾಗಿದೆ: ಧೂಮಪಾನ, ಅಧಿಕ ರಕ್ತದೊತ್ತಡ, ಬೊಜ್ಜು (BMI ≥30).\n\nಮುಂದಿನ ಹಂತಗಳು: ಹೆಚ್ಚಿನ ಮೌಲ್ಯಮಾಪನಕ್ಕಾಗಿ ನೇತ್ರಶಾಸ್ತ್ರದ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಅನ್ನು ಆದಷ್ಟು ಬೇಗ ಕಾಯ್ದಿರಿಸಿ.\n\nನೆನಪಿಡಿ - ಆರಂಭಿಕ ಗಮನವು ನಿಮ್ಮ ದೃಷ್ಟಿಯನ್ನು ಸಂರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. 💙",
+    "doctor_kn": "ಸೊಲೊಮನ್‌ಗಾಗಿ VisionAI ಕ್ಲಿನಿಕಲ್ ವರದಿ (ವಯಸ್ಸು: 78, BMI: 30.8)\n\nಹಂತ: ತೀವ್ರ ಡಯಾಬಿಟಿಕ್ ರೆಟಿನೋಪತಿ.\nಸಾರಾಂಶ: ವ್ಯಾಪಕವಾದ ರಕ್ತಸ್ರಾವಗಳು ಮತ್ತು ಸಿರೆಯ ಮಣಿಗಳು - ಸಂಭವನೀಯ ತೀವ್ರ NPDR.\nಸ್ವಯಂಚಾಲಿತ ಲೆಸಿಯಾನ್ ವಿಶ್ಲೇಷಣೆ: ಹೊರಸೂಸುವಿಕೆಗಳು 3.1%, ಹೆಮರೇಜ್ಗಳು 73.2%, ಹತ್ತಿ ಉಣ್ಣೆ 0.2%, ಮೈಕ್ರೊಅನ್ಯೂರಿಸಮ್ಗಳು 53.1%, ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್ 2.6%, ಒಟ್ಟು ಲೆಸಿಯಾನ್ ಲೋಡ್ 6.9%.\nವಿಶ್ವಾಸ: N/A, AUC: N/A.\nವ್ಯವಸ್ಥಿತ ಅಪಾಯಗಳನ್ನು ಗುರುತಿಸಲಾಗಿದೆ: ಧೂಮಪಾನ, ಅಧಿಕ ರಕ್ತದೊತ್ತಡ, ಬೊಜ್ಜು (BMI ≥30).\n\nಶಿಫಾರಸು: ತುರ್ತು ನೇತ್ರಶಾಸ್ತ್ರದ ಉಲ್ಲೇಖ; ವ್ಯವಸ್ಥಿತ ಆಪ್ಟಿಮೈಸೇಶನ್.\n\nಗಮನಿಸಿ: ಕ್ಲಿನಿಕಲ್ ಸಂಶೋಧನೆಗಳು ಮತ್ತು ರೋಗಿಯ ಇತಿಹಾಸದೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಬಂಧಿಸಿ. ಲಭ್ಯವಿದ್ದರೆ Grad-CAM ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    "research_kn": "ವಿಷಯ: ಸೊಲೊಮನ್\nನಿರೀಕ್ಷಿತ ಹಂತ: ತೀವ್ರ\nಲೆಸಿಯಾನ್ ಸಾರಾಂಶ: ಹೊರಸೂಸುವಿಕೆ 3.1%, ರಕ್ತಸ್ರಾವಗಳು 73.2%, ಹತ್ತಿ ಉಣ್ಣೆ 0.2%, ಮೈಕ್ರೊಅನ್ಯೂರಿಮ್ಸ್ 53.1%, ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್ 2.6%, ಒಟ್ಟು ಗಾಯದ ಹೊರೆ 6.9%\nಮಾದರಿ ವಿಶ್ವಾಸ: N/A, AUC: N/A, GradCAM: ಲಭ್ಯವಿಲ್ಲ\n\nವಿಶ್ಲೇಷಣಾತ್ಮಕ ಟಿಪ್ಪಣಿಗಳು: ಹೆಚ್ಚಿನ ಲೆಸಿಯಾನ್ ಸಾಂದ್ರತೆ ಮತ್ತು ಹೀಟ್‌ಮ್ಯಾಪ್ ಕವರೇಜ್; ತೀವ್ರ NPDR ಸಂಭವನೀಯತೆಯ ಕರ್ವ್‌ಗೆ ಹೊಂದಿಕೆಯಾಗುವ ಮಾದರಿ.\n\nಸಂಶೋಧನಾ ಶಿಫಾರಸುಗಳು:\n- ಪರಿಣಿತ ಮುಖವಾಡದೊಂದಿಗೆ ಲೆಸಿಯಾನ್ ಸೆಗ್ಮೆಂಟೇಶನ್ ಅತಿಕ್ರಮಣವನ್ನು ಮೌಲ್ಯೀಕರಿಸಿ.\n- ಹಂತದ ಸಮತೋಲನವನ್ನು ಸುಧಾರಿಸಲು ಮುಂದಿನ ಮರುತರಬೇತಿ ಬ್ಯಾಚ್‌ನಲ್ಲಿ ಸೇರಿಸಿ.\n- ಮಾನವ ಗ್ರೇಡಿಂಗ್ ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳ ವಿರುದ್ಧ GradCAM ಪ್ರದೇಶದ ನಿಷ್ಠೆಯನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿ."
+  }
+}

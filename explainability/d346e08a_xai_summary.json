@@ -1,0 +1,78 @@
+{
+  "uid": "d346e08a",
+  "metadata": {
+    "Full_Name": "solomon",
+    "Age": "78",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 83.6,
+    "risk_score": 95.42
+  },
+  "probs": {
+    "cnn": [
+      0.01661859080195427,
+      0.009372644126415253,
+      0.012959725223481655,
+      0.9499325752258301,
+      0.011116418056190014
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.04583035825762507,
+      0.03836910264489016,
+      0.04008035760254893,
+      0.8360139336333661,
+      0.03970624786156982
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 0.493,
+    "hemorrhages": 7.654,
+    "cotton_wool": 0.0,
+    "microaneurysms": 0.161,
+    "neovascularization": 6.855,
+    "total_lesion_load": 8.308
+  },
+  "images": {
+    "original": "uploads\\d346e08a.png",
+    "processed": "static\\processed_images\\d346e08a_processed.png",
+    "gradcam": "static/xai_outputs/d346e08a_gradcam.jpg",
+    "lime": "static/xai_outputs/d346e08a_lime.png",
+    "shap": "static/xai_outputs/d346e08a_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-11T19:32:31.561667+00:00",
+  "reports": {
+    "patient_en": "Patient: solomon\n\nSummary:\n- Detected stage: Severe\n- Model confidence: 83.6%\n- Estimated retinal risk score: 95.42%\n\nInterpretation:\nSignificant disease is present. Please arrange an ophthalmology review — early treatment can reduce the risk of vision loss.\n\nFindings (automated lesion summary):\n- Microaneurysms: 16.10%; Exudates: 49.30%; Hemorrhages: 7.65%; Cotton Wool: 0.00%; Neovascularization: 6.86%; Total Lesion Load: 8.31%\n\nAdvice / Next steps:\n1. Schedule follow-up as advised by your local eye care provider.\n2. Keep blood sugar and blood pressure under control.\n3. Report any sudden visual changes (blur, floaters, flashes) immediately.\n\nLifestyle notes:\n- Maintain balanced diet, exercise, avoid smoking, and adhere to medication.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_en": "Clinical Report — Ophthalmologist\n\nPatient: Name: solomon, Age: 78, BMI: 30.8\nPredicted stage: SEVERE\nModel confidence: 83.6%\nRisk score: 95.42%\n\nFindings (automated lesion quantification):\n- Microaneurysms: 16.10%\n- Exudates: 49.30%\n- Hemorrhages: 7.65%\n- Cotton Wool: 0.00%\n- Neovascularization: 6.86%\n- Total Lesion Load: 8.31%\n\nClinical interpretation:\nExtensive hemorrhages, venous beading and/or cotton-wool spots consistent with severe NPDR. Urgent referral advised.\n\nModel & Explainability:\n- Multi-model fusion: CNN ensemble (EfficientNet, ResNet50, ViT) + metadata models (RF, XGBoost, stacked ensemble).\n- Explainability outputs available: GradCAM++, LIME, SHAP — review heatmaps and overlay masks.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nSuggested clinical action items:\n1. Correlate with slit-lamp exam and fundus exam.\n2. If macular edema suspected, obtain OCT imaging.\n3. For suspected PDR, arrange urgent retina referral for potential PRP/anti-VEGF.\n4. Document lesion masks if available for audit.",
+    "research_en": "Research Notes\n\nUID: d346e08a\nPredicted stage: SEVERE\nConfidence: 83.6%\nRisk score: 95.42%\n\nModel stack & inference\n- CNN ensemble: EfficientNet, ResNet50, ViT\n- Metadata models: Random Forest, XGBoost, Stacked ensemble\n- Fusion method: weighted averaging with risk calibration\n- Inference device: CPU\n\nExplainability & lesion quantification:\n- Microaneurysms: 16.10%\n- Exudates: 49.30%\n- Hemorrhages: 7.65%\n- Cotton Wool: 0.00%\n- Neovascularization: 6.86%\n- Total Lesion Load: 8.31%\n\nSHAP / feature importance: check SHAP plots for systemic features (HbA1c, BMI, BP).\n\nProbability vectors:\n- CNN: [0.01661859080195427, 0.009372644126415253, 0.012959725223481655, 0.9499325752258301, 0.011116418056190014]\n- ML : [0.21136369507961952, 0.20268235745827803, 0.19376393050773666, 0.19047474400645248, 0.20171527294791336]\n- Fused: [0.04583035825762507, 0.03836910264489016, 0.04008035760254893, 0.8360139336333661, 0.03970624786156982]\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nResearch recommendations:\n1. Validate lesion segmentation / cotton-wool detection against annotated masks (report dice/IoU).\n2. Add cotton-wool-spot specific augmentation and mask labels if false negatives observed.\n3. Measure GradCAM heatmap overlap (IoU) with human heatmaps for explainability calibration.\n4. Consider temporal models for progressive DR tracking and early-warning signals.",
+    "patient_kn": "ರೋಗಿ: ಸೊಲೊಮನ್\n\nಸಾರಾಂಶ:\n- ಪತ್ತೆಯಾದ ಹಂತ: ತೀವ್ರ\n- ಮಾದರಿ ವಿಶ್ವಾಸ: 83.6%\n- ಅಂದಾಜು ರೆಟಿನಾದ ಅಪಾಯದ ಸ್ಕೋರ್: 95.42%\n\nವ್ಯಾಖ್ಯಾನ:\nಗಮನಾರ್ಹ ರೋಗವಿದೆ. ದಯವಿಟ್ಟು ನೇತ್ರಶಾಸ್ತ್ರದ ಪರಿಶೀಲನೆಯನ್ನು ಏರ್ಪಡಿಸಿ - ಆರಂಭಿಕ ಚಿಕಿತ್ಸೆಯು ದೃಷ್ಟಿ ನಷ್ಟದ ಅಪಾಯವನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ.\n\nಸಂಶೋಧನೆಗಳು (ಸ್ವಯಂಚಾಲಿತ ಗಾಯದ ಸಾರಾಂಶ):\n- ಮೈಕ್ರೋಅನ್ಯೂರಿಮ್ಸ್: 16.10%; ಹೊರಸೂಸುವಿಕೆಗಳು: 49.30%; ರಕ್ತಸ್ರಾವಗಳು: 7.65%; ಹತ್ತಿ ಉಣ್ಣೆ: 0.00%; ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್: 6.86%; ಒಟ್ಟು ಗಾಯದ ಹೊರೆ: 8.31%\n\nಸಲಹೆ / ಮುಂದಿನ ಹಂತಗಳು:\n1. ನಿಮ್ಮ ಸ್ಥಳೀಯ ಕಣ್ಣಿನ ಆರೈಕೆ ನೀಡುಗರಿಂದ ಸಲಹೆಯಂತೆ ಅನುಸರಣೆಯನ್ನು ನಿಗದಿಪಡಿಸಿ.\n2. ರಕ್ತದ ಸಕ್ಕರೆ ಮತ್ತು ರಕ್ತದೊತ್ತಡವನ್ನು ನಿಯಂತ್ರಣದಲ್ಲಿಡಿ.\n3. ಯಾವುದೇ ಹಠಾತ್ ದೃಶ್ಯ ಬದಲಾವಣೆಗಳನ್ನು (ಬ್ಲರ್, ಫ್ಲೋಟರ್ಸ್, ಫ್ಲಾಷಸ್) ತಕ್ಷಣವೇ ವರದಿ ಮಾಡಿ.\n\nಜೀವನಶೈಲಿ ಟಿಪ್ಪಣಿಗಳು:\n- ಸಮತೋಲಿತ ಆಹಾರವನ್ನು ಕಾಪಾಡಿಕೊಳ್ಳಿ, ವ್ಯಾಯಾಮ ಮಾಡಿ, ಧೂಮಪಾನವನ್ನು ತಪ್ಪಿಸಿ ಮತ್ತು ಔಷಧಿಗೆ ಬದ್ಧರಾಗಿರಿ.\n\nವಿಧೇಯಪೂರ್ವಕವಾಗಿ,\nVisionAI - ನಿಮ್ಮ ಡಿಜಿಟಲ್ ಕಣ್ಣಿನ ಆರೋಗ್ಯ ಸಹಾಯಕ.",
+    "doctor_kn": "ಕ್ಲಿನಿಕಲ್ ವರದಿ - ನೇತ್ರಶಾಸ್ತ್ರಜ್ಞ\n\nರೋಗಿ: ಹೆಸರು: ಸೊಲೊಮನ್, ವಯಸ್ಸು: 78, BMI: 30.8\nಊಹಿಸಲಾದ ಹಂತ: ತೀವ್ರ\nಮಾದರಿ ವಿಶ್ವಾಸ: 83.6%\nಅಪಾಯದ ಸ್ಕೋರ್: 95.42%\n\nಸಂಶೋಧನೆಗಳು (ಸ್ವಯಂಚಾಲಿತ ಲೆಸಿಯಾನ್ ಪ್ರಮಾಣೀಕರಣ):\n- ಮೈಕ್ರೋಅನ್ಯೂರಿಮ್ಸ್: 16.10%\n- ಹೊರಸೂಸುವಿಕೆ: 49.30%\n- ರಕ್ತಸ್ರಾವಗಳು: 7.65%\n- ಹತ್ತಿ ಉಣ್ಣೆ: 0.00%\n- ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್: 6.86%\n- ಒಟ್ಟು ಲೆಸಿಯಾನ್ ಲೋಡ್: 8.31%\n\nಕ್ಲಿನಿಕಲ್ ವ್ಯಾಖ್ಯಾನ:\nತೀವ್ರವಾದ NPDR ಗೆ ಅನುಗುಣವಾಗಿ ವ್ಯಾಪಕವಾದ ರಕ್ತಸ್ರಾವಗಳು, ಸಿರೆಯ ಮಣಿಗಳು ಮತ್ತು/ಅಥವಾ ಹತ್ತಿ ಉಣ್ಣೆಯ ಕಲೆಗಳು. ತುರ್ತು ಉಲ್ಲೇಖವನ್ನು ಸೂಚಿಸಲಾಗಿದೆ.\n\nಮಾದರಿ ಮತ್ತು ವಿವರಣೆ:\n- ಬಹು-ಮಾದರಿ ಸಮ್ಮಿಳನ: CNN ಸಮಷ್ಟಿ (EfficientNet, ResNet50, ViT) + ಮೆಟಾಡೇಟಾ ಮಾದರಿಗಳು (RF, XGBoost, ಜೋಡಿಸಲಾದ ಸಮೂಹ).\n- ವಿವರಿಸುವ ಔಟ್‌ಪುಟ್‌ಗಳು ಲಭ್ಯವಿದೆ: GradCAM++, LIME, SHAP — ವಿಮರ್ಶೆ ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳು ಮತ್ತು ಓವರ್‌ಲೇ ಮಾಸ್ಕ್‌ಗಳು.\n\nಕಾರ್ಯಕ್ಷಮತೆಯ ಮಾಪನಗಳು:\n- ನಿಖರತೆ: 0.947\n- F1-ಸ್ಕೋರ್: 0.938\n- AUC/ROC: 0.971\n\nಸೂಚಿಸಲಾದ ಕ್ಲಿನಿಕಲ್ ಕ್ರಿಯೆಯ ಅಂಶಗಳು:\n1. ಸ್ಲಿಟ್-ಲ್ಯಾಂಪ್ ಪರೀಕ್ಷೆ ಮತ್ತು ಫಂಡಸ್ ಪರೀಕ್ಷೆಯೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಬಂಧ.\n2. ಮ್ಯಾಕ್ಯುಲರ್ ಎಡಿಮಾ ಶಂಕಿತವಾಗಿದ್ದರೆ, OCT ಚಿತ್ರಣವನ್ನು ಪಡೆದುಕೊಳ್ಳಿ.\n3. ಶಂಕಿತ PDR ಗಾಗಿ, ಸಂಭಾವ್ಯ PRP/anti-VEGF ಗಾಗಿ ತುರ್ತು ರೆಟಿನಾ ರೆಫರಲ್ ವ್ಯವಸ್ಥೆ ಮಾಡಿ.\n4. ಆಡಿಟ್‌ಗೆ ಲಭ್ಯವಿದ್ದರೆ ಲೆಸಿಯಾನ್ ಮಾಸ್ಕ್‌ಗಳನ್ನು ಡಾಕ್ಯುಮೆಂಟ್ ಮಾಡಿ.",
+    "research_kn": "ಸಂಶೋಧನಾ ಟಿಪ್ಪಣಿಗಳು\n\nUID: d346e08a\nಊಹಿಸಲಾದ ಹಂತ: ತೀವ್ರ\nವಿಶ್ವಾಸ: 83.6%\nಅಪಾಯದ ಸ್ಕೋರ್: 95.42%\n\nಮಾದರಿ ಸ್ಟಾಕ್ ಮತ್ತು ತೀರ್ಮಾನ\n- ಸಿಎನ್ಎನ್ ಸಮೂಹ: ಎಫಿಶಿಯೆಂಟ್ ನೆಟ್, ರೆಸ್ನೆಟ್ 50, ವಿಟಿ\n- ಮೆಟಾಡೇಟಾ ಮಾದರಿಗಳು: ರಾಂಡಮ್ ಫಾರೆಸ್ಟ್, XGBoost, ಸ್ಟ್ಯಾಕ್ಡ್ ಸಮಗ್ರ\n- ಫ್ಯೂಷನ್ ವಿಧಾನ: ಅಪಾಯದ ಮಾಪನಾಂಕ ನಿರ್ಣಯದೊಂದಿಗೆ ತೂಕದ ಸರಾಸರಿ\n- ನಿರ್ಣಯ ಸಾಧನ: CPU\n\nವಿವರಣೆ ಮತ್ತು ಗಾಯದ ಪ್ರಮಾಣ:\n- ಮೈಕ್ರೋಅನ್ಯೂರಿಮ್ಸ್: 16.10%\n- ಹೊರಸೂಸುವಿಕೆ: 49.30%\n- ರಕ್ತಸ್ರಾವಗಳು: 7.65%\n- ಹತ್ತಿ ಉಣ್ಣೆ: 0.00%\n- ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್: 6.86%\n- ಒಟ್ಟು ಲೆಸಿಯಾನ್ ಲೋಡ್: 8.31%\n\nSHAP / ವೈಶಿಷ್ಟ್ಯದ ಪ್ರಾಮುಖ್ಯತೆ: ವ್ಯವಸ್ಥಿತ ವೈಶಿಷ್ಟ್ಯಗಳಿಗಾಗಿ SHAP ಪ್ಲಾಟ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ (HbA1c, BMI, BP).\n\nಸಂಭವನೀಯತೆ ವಾಹಕಗಳು:\n- CNN: [0.01661859080195427, 0.009372644126415253, 0.012959725223481655, 0.9499325752258301, 0.0181616181\n- ML : [0.21136369507961952, 0.20268235745827803, 0.19376393050773666, 0.19047474400645248, 0.202947\n- ಸಮ್ಮಿಳನ: [0.04583035825762507, 0.03836910264489016, 0.04008035760254893, 0.8360139336333661, 0.0398265629826\n\nಕಾರ್ಯಕ್ಷಮತೆಯ ಮಾಪನಗಳು:\n- ನಿಖರತೆ: 0.947\n- F1-ಸ್ಕೋರ್: 0.938\n- AUC/ROC: 0.971\n\nಸಂಶೋಧನಾ ಶಿಫಾರಸುಗಳು:\n1. ಟಿಪ್ಪಣಿ ಮಾಡಿದ ಮಾಸ್ಕ್‌ಗಳ ವಿರುದ್ಧ ಲೆಸಿಯಾನ್ ಸೆಗ್ಮೆಂಟೇಶನ್ / ಹತ್ತಿ-ಉಣ್ಣೆ ಪತ್ತೆ ಮಾಡುವಿಕೆಯನ್ನು ಮೌಲ್ಯೀಕರಿಸಿ (ಡೈಸ್/ಐಒಯು ವರದಿ ಮಾಡಿ).\n2. ತಪ್ಪು ನಿರಾಕರಣೆಗಳನ್ನು ಗಮನಿಸಿದರೆ ಹತ್ತಿ ಉಣ್ಣೆ-ಸ್ಪಾಟ್ ನಿರ್ದಿಷ್ಟ ವರ್ಧನೆ ಮತ್ತು ಮುಖವಾಡ ಲೇಬಲ್‌ಗಳನ್ನು ಸೇರಿಸಿ.\n3. ವಿವರಿಸಬಹುದಾದ ಮಾಪನಾಂಕ ನಿರ್ಣಯಕ್ಕಾಗಿ ಮಾನವ ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳೊಂದಿಗೆ GradCAM ಹೀಟ್‌ಮ್ಯಾಪ್ ಅತಿಕ್ರಮಣವನ್ನು (IoU) ಅಳೆಯಿರಿ.\n4. ಪ್ರಗತಿಶೀಲ DR ಟ್ರ್ಯಾಕಿಂಗ್ ಮತ್ತು ಮುಂಚಿನ ಎಚ್ಚರಿಕೆ ಸಂಕೇತಗಳಿಗಾಗಿ ತಾತ್ಕಾಲಿಕ ಮಾದರಿಗಳನ್ನು ಪರಿಗಣಿಸಿ."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "uid": "004ba5e7",
+  "metadata": {
+    "Full Name": "John Mathew",
+    "Age": 63.0,
+    "Gender": "Female",
+    "Contact": "8317378172",
+    "Systolic": 160.0,
+    "Diastolic": 101.0,
+    "Glucose Level": 323.0,
+    "BMI": 30.8,
+    "Smoking": "Yes",
+    "Duration of Diabetes (years)": 14.0,
+    "Hypertension": "Yes",
+    "Family History": "No"
+  },
+  "predicted_stage": "NO_DR",
+  "confidence": 20.0,
+  "risk_score": 0.2,
+  "lesion_stats": {},
+  "model_info": {
+    "dl_probs": [
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "ml_probs": []
+  },
+  "images": {
+    "original": "C:\\Users\\jenif\\OneDrive\\Desktop\\DR_FINAL__PROJECT\\uploads\\004ba5e7_655.png",
+    "preprocessed": "[[[ 8  3  6]\n  [ 8  3  6]\n  [ 8  3  6]\n  ...\n  [ 8  3  6]\n  [ 8  3  6]\n  [ 8  3  6]]\n\n [[ 8  3  6]\n  [ 8  3  6]\n  [ 8  3  6]\n  ...\n  [ 8  9  8]\n  [ 8  3  6]\n  [ 8  3  6]]\n\n [[ 8  3  6]\n  [ 8  3  6]\n  [ 8  3  6]\n  ...\n  [ 8  3  6]\n  [ 8  3  6]\n  [ 8  9  8]]\n\n ...\n\n [[ 8  3  6]\n  [ 8  3  6]\n  [ 8  9  8]\n  ...\n  [ 8  3  6]\n  [ 8  3  6]\n  [ 8  3  6]]\n\n [[ 8  3  6]\n  [ 8  3  6]\n  [ 8  3  6]\n  ...\n  [ 8  3  6]\n  [ 8  3  6]\n  [ 8  3  6]]\n\n [[ 8  3  6]\n  [ 8  3  6]\n  [13  7 11]\n  ...\n  [ 8  3  6]\n  [ 8  3  6]\n  [ 8  3  6]]]",
+    "gradcam": "explainability\\gradcam\\004ba5e7_gradcam.png",
+    "lime": "explainability\\lime\\004ba5e7_lime.png",
+    "shap": "explainability\\shap\\004ba5e7_shap.png",
+    "roc": "explainability\\roc\\004ba5e7_roc.png"
+  },
+  "generated_at": "2025-11-07T11:34:25.291768"
+}

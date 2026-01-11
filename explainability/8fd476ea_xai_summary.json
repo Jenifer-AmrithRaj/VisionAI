@@ -1,0 +1,76 @@
+{
+  "uid": "8fd476ea",
+  "metadata": {
+    "Full_Name": "sebastain",
+    "Age": "89",
+    "Gender": "Male",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "432",
+    "BMI": "30",
+    "Duration": "19",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "300",
+    "HbA1c": "8.9",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "3",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "PDR",
+    "confidence": 81.4,
+    "risk_score": 95.91
+  },
+  "probs": {
+    "cnn": [
+      0.010821065865457058,
+      0.012188243679702282,
+      0.017901958897709846,
+      0.037009499967098236,
+      0.9220792651176453
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.0409024590819239,
+      0.040762359584823736,
+      0.044281253377265864,
+      0.06002928486225855,
+      0.8140246430937279
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 1.472,
+    "hemorrhages": 9.973,
+    "microaneurysms": 23.983,
+    "total_lesion_load": 35.428
+  },
+  "images": {
+    "original": "uploads\\8fd476ea.png",
+    "processed": "static\\processed_images\\8fd476ea_processed.png",
+    "gradcam": "static/xai_outputs/8fd476ea_gradcam.jpg",
+    "lime": "static/xai_outputs/8fd476ea_lime.png",
+    "shap": ""
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2026-01-11T10:20:33.929134+00:00",
+  "reports": {
+    "patient_en": "Patient: sebastain\n\nSummary:\n- Detected stage: Pdr\n- Model confidence: 81.4%\n- Estimated retinal risk score: 95.91%\n\nInterpretation:\nDiabetic retinal changes were detected. Please follow up with your eye care provider.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_en": "Clinical Report — Ophthalmologist\n\nPatient: sebastain\nPredicted stage: PDR\n\nFindings:\nAutomated lesion quantification and explainability outputs available.\n",
+    "research_en": "Research Notes\n\nUID: 8fd476ea\nPredicted stage: PDR\n\nFull explainability and lesion analysis available.",
+    "patient_kn": "",
+    "doctor_kn": "",
+    "research_kn": ""
+  }
+}

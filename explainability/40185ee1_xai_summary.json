@@ -1,0 +1,78 @@
+{
+  "uid": "40185ee1",
+  "metadata": {
+    "Full_Name": "raj",
+    "Age": "58",
+    "Gender": "Male",
+    "Systolic": "135",
+    "Diastolic": "88",
+    "Glucose_Level": "155",
+    "BMI": "28.5",
+    "Duration": "8",
+    "Smoking": "No",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "210",
+    "HbA1c": "7.9",
+    "Insulin_Use": "No",
+    "Physical_Activity": "14",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "MODERATE",
+    "confidence": 85.29,
+    "risk_score": 95.8
+  },
+  "probs": {
+    "cnn": [
+      0.012154287658631802,
+      0.003214231925085187,
+      0.9691659212112427,
+      0.004594082478433847,
+      0.01087149791419506
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.042035698014740136,
+      0.03313445015833087,
+      0.8528556072462561,
+      0.03247618112275847,
+      0.039498063457914394
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 2.18,
+    "hemorrhages": 5.482,
+    "cotton_wool": 0.0,
+    "microaneurysms": 27.353,
+    "neovascularization": 30.0,
+    "total_lesion_load": 35.015
+  },
+  "images": {
+    "original": "uploads\\40185ee1.png",
+    "processed": "static\\processed_images\\40185ee1_processed.png",
+    "gradcam": "static/xai_outputs/40185ee1_gradcam.jpg",
+    "lime": "static/xai_outputs/40185ee1_lime.png",
+    "shap": "static/xai_outputs/40185ee1_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-12T09:50:26.517830+00:00",
+  "reports": {
+    "patient_en": "Patient: raj\n\nSummary:\n- Detected stage: Moderate\n- Model confidence: 85.29%\n- Estimated retinal risk score: 95.8%\n\nInterpretation:\nModerate diabetic retinal changes were seen. These can progress and may affect vision — closer follow-up recommended.\n\nFindings (automated lesion summary):\n- Microaneurysms: 27.35%; Exudates: 2.18%; Hemorrhages: 5.48%; Cotton Wool: 0.00%; Neovascularization: 30.00%; Total Lesion Load: 35.02%\n\nAdvice / Next steps:\n1. Schedule follow-up as advised by your local eye care provider.\n2. Keep blood sugar and blood pressure under control.\n3. Report any sudden visual changes (blur, floaters, flashes) immediately.\n\nLifestyle notes:\n- Maintain balanced diet, exercise, avoid smoking, and adhere to medication.\n\nSincerely,\nVisionAI — your digital eye health assistant.",
+    "doctor_en": "Clinical Report — Ophthalmologist\n\nPatient: Name: raj, Age: 58, BMI: 28.5\nPredicted stage: MODERATE\nModel confidence: 85.29%\nRisk score: 95.8%\n\nFindings (automated lesion quantification):\n- Microaneurysms: 27.35%\n- Exudates: 2.18%\n- Hemorrhages: 5.48%\n- Cotton Wool: 0.00%\n- Neovascularization: 30.00%\n- Total Lesion Load: 35.02%\n\nClinical interpretation:\nMultiple dot-blot hemorrhages and early exudative changes noted. Consider ophthalmology review and OCT if macular edema suspected.\n\nModel & Explainability:\n- Multi-model fusion: CNN ensemble (EfficientNet, ResNet50, ViT) + metadata models (RF, XGBoost, stacked ensemble).\n- Explainability outputs available: GradCAM++, LIME, SHAP — review heatmaps and overlay masks.\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nSuggested clinical action items:\n1. Correlate with slit-lamp exam and fundus exam.\n2. If macular edema suspected, obtain OCT imaging.\n3. For suspected PDR, arrange urgent retina referral for potential PRP/anti-VEGF.\n4. Document lesion masks if available for audit.",
+    "research_en": "Research Notes\n\nUID: 40185ee1\nPredicted stage: MODERATE\nConfidence: 85.29%\nRisk score: 95.8%\n\nModel stack & inference\n- CNN ensemble: EfficientNet, ResNet50, ViT\n- Metadata models: Random Forest, XGBoost, Stacked ensemble\n- Fusion method: weighted averaging with risk calibration\n- Inference device: CPU\n\nExplainability & lesion quantification:\n- Microaneurysms: 27.35%\n- Exudates: 2.18%\n- Hemorrhages: 5.48%\n- Cotton Wool: 0.00%\n- Neovascularization: 30.00%\n- Total Lesion Load: 35.02%\n\nSHAP / feature importance: check SHAP plots for systemic features (HbA1c, BMI, BP).\n\nProbability vectors:\n- CNN: [0.012154287658631802, 0.003214231925085187, 0.9691659212112427, 0.004594082478433847, 0.01087149791419506]\n- ML : [0.21136369507961952, 0.20268235745827803, 0.19376393050773666, 0.19047474400645248, 0.20171527294791336]\n- Fused: [0.042035698014740136, 0.03313445015833087, 0.8528556072462561, 0.03247618112275847, 0.039498063457914394]\n\nPerformance metrics:\n- Accuracy: 0.947\n- F1-score: 0.938\n- AUC/ROC: 0.971\n\nResearch recommendations:\n1. Validate lesion segmentation / cotton-wool detection against annotated masks (report dice/IoU).\n2. Add cotton-wool-spot specific augmentation and mask labels if false negatives observed.\n3. Measure GradCAM heatmap overlap (IoU) with human heatmaps for explainability calibration.\n4. Consider temporal models for progressive DR tracking and early-warning signals.",
+    "patient_kn": "ರೋಗಿ: ರಾಜ್\n\nಸಾರಾಂಶ:\n- ಪತ್ತೆಯಾದ ಹಂತ: ಮಧ್ಯಮ\n- ಮಾದರಿ ವಿಶ್ವಾಸ: 85.29%\n- ಅಂದಾಜು ರೆಟಿನಾದ ಅಪಾಯದ ಸ್ಕೋರ್: 95.8%\n\nವ್ಯಾಖ್ಯಾನ:\nಮಧುಮೇಹದ ರೆಟಿನಾದ ಮಧ್ಯಮ ಬದಲಾವಣೆಗಳು ಕಂಡುಬಂದವು. ಇವುಗಳು ಪ್ರಗತಿ ಹೊಂದಬಹುದು ಮತ್ತು ದೃಷ್ಟಿಯ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರಬಹುದು - ಹತ್ತಿರದ ಅನುಸರಣೆ ಶಿಫಾರಸು.\n\nಸಂಶೋಧನೆಗಳು (ಸ್ವಯಂಚಾಲಿತ ಗಾಯದ ಸಾರಾಂಶ):\n- ಮೈಕ್ರೋಅನ್ಯೂರಿಮ್ಸ್: 27.35%; ಹೊರಸೂಸುವಿಕೆಗಳು: 2.18%; ರಕ್ತಸ್ರಾವಗಳು: 5.48%; ಹತ್ತಿ ಉಣ್ಣೆ: 0.00%; ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್: 30.00%; ಒಟ್ಟು ಲೆಸಿಯಾನ್ ಲೋಡ್: 35.02%\n\nಸಲಹೆ / ಮುಂದಿನ ಹಂತಗಳು:\n1. ನಿಮ್ಮ ಸ್ಥಳೀಯ ಕಣ್ಣಿನ ಆರೈಕೆ ನೀಡುಗರಿಂದ ಸಲಹೆಯಂತೆ ಅನುಸರಣೆಯನ್ನು ನಿಗದಿಪಡಿಸಿ.\n2. ರಕ್ತದ ಸಕ್ಕರೆ ಮತ್ತು ರಕ್ತದೊತ್ತಡವನ್ನು ನಿಯಂತ್ರಣದಲ್ಲಿಡಿ.\n3. ಯಾವುದೇ ಹಠಾತ್ ದೃಶ್ಯ ಬದಲಾವಣೆಗಳನ್ನು (ಬ್ಲರ್, ಫ್ಲೋಟರ್ಸ್, ಫ್ಲಾಷಸ್) ತಕ್ಷಣವೇ ವರದಿ ಮಾಡಿ.\n\nಜೀವನಶೈಲಿ ಟಿಪ್ಪಣಿಗಳು:\n- ಸಮತೋಲಿತ ಆಹಾರವನ್ನು ಕಾಪಾಡಿಕೊಳ್ಳಿ, ವ್ಯಾಯಾಮ ಮಾಡಿ, ಧೂಮಪಾನವನ್ನು ತಪ್ಪಿಸಿ ಮತ್ತು ಔಷಧಿಗೆ ಬದ್ಧರಾಗಿರಿ.\n\nವಿಧೇಯಪೂರ್ವಕವಾಗಿ,\nVisionAI - ನಿಮ್ಮ ಡಿಜಿಟಲ್ ಕಣ್ಣಿನ ಆರೋಗ್ಯ ಸಹಾಯಕ.",
+    "doctor_kn": "ಕ್ಲಿನಿಕಲ್ ವರದಿ - ನೇತ್ರಶಾಸ್ತ್ರಜ್ಞ\n\nರೋಗಿ: ಹೆಸರು: ರಾಜ್, ವಯಸ್ಸು: 58, BMI: 28.5\nನಿರೀಕ್ಷಿತ ಹಂತ: ಮಧ್ಯಮ\nಮಾದರಿ ವಿಶ್ವಾಸ: 85.29%\nಅಪಾಯದ ಸ್ಕೋರ್: 95.8%\n\nಸಂಶೋಧನೆಗಳು (ಸ್ವಯಂಚಾಲಿತ ಲೆಸಿಯಾನ್ ಪ್ರಮಾಣೀಕರಣ):\n- ಮೈಕ್ರೋಅನ್ಯೂರಿಮ್ಸ್: 27.35%\n- ಹೊರಸೂಸುವಿಕೆಗಳು: 2.18%\n- ರಕ್ತಸ್ರಾವಗಳು: 5.48%\n- ಹತ್ತಿ ಉಣ್ಣೆ: 0.00%\n- ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್: 30.00%\n- ಒಟ್ಟು ಲೆಸಿಯಾನ್ ಲೋಡ್: 35.02%\n\nಕ್ಲಿನಿಕಲ್ ವ್ಯಾಖ್ಯಾನ:\nಬಹು ಡಾಟ್-ಬ್ಲಾಟ್ ರಕ್ತಸ್ರಾವಗಳು ಮತ್ತು ಆರಂಭಿಕ ಹೊರಸೂಸುವ ಬದಲಾವಣೆಗಳನ್ನು ಗಮನಿಸಲಾಗಿದೆ. ಮ್ಯಾಕ್ಯುಲರ್ ಎಡಿಮಾ ಶಂಕಿತವಾಗಿದ್ದರೆ ನೇತ್ರಶಾಸ್ತ್ರದ ವಿಮರ್ಶೆ ಮತ್ತು OCT ಅನ್ನು ಪರಿಗಣಿಸಿ.\n\nಮಾದರಿ ಮತ್ತು ವಿವರಣೆ:\n- ಬಹು-ಮಾದರಿ ಸಮ್ಮಿಳನ: CNN ಸಮಷ್ಟಿ (EfficientNet, ResNet50, ViT) + ಮೆಟಾಡೇಟಾ ಮಾದರಿಗಳು (RF, XGBoost, ಜೋಡಿಸಲಾದ ಸಮೂಹ).\n- ವಿವರಿಸುವ ಔಟ್‌ಪುಟ್‌ಗಳು ಲಭ್ಯವಿದೆ: GradCAM++, LIME, SHAP — ವಿಮರ್ಶೆ ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳು ಮತ್ತು ಓವರ್‌ಲೇ ಮಾಸ್ಕ್‌ಗಳು.\n\nಕಾರ್ಯಕ್ಷಮತೆಯ ಮಾಪನಗಳು:\n- ನಿಖರತೆ: 0.947\n- F1-ಸ್ಕೋರ್: 0.938\n- AUC/ROC: 0.971\n\nಸೂಚಿಸಲಾದ ಕ್ಲಿನಿಕಲ್ ಕ್ರಿಯೆಯ ಅಂಶಗಳು:\n1. ಸ್ಲಿಟ್-ಲ್ಯಾಂಪ್ ಪರೀಕ್ಷೆ ಮತ್ತು ಫಂಡಸ್ ಪರೀಕ್ಷೆಯೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಬಂಧ.\n2. ಮ್ಯಾಕ್ಯುಲರ್ ಎಡಿಮಾ ಶಂಕಿತವಾಗಿದ್ದರೆ, OCT ಚಿತ್ರಣವನ್ನು ಪಡೆದುಕೊಳ್ಳಿ.\n3. ಶಂಕಿತ PDR ಗಾಗಿ, ಸಂಭಾವ್ಯ PRP/anti-VEGF ಗಾಗಿ ತುರ್ತು ರೆಟಿನಾ ರೆಫರಲ್ ವ್ಯವಸ್ಥೆ ಮಾಡಿ.\n4. ಆಡಿಟ್‌ಗೆ ಲಭ್ಯವಿದ್ದರೆ ಲೆಸಿಯಾನ್ ಮಾಸ್ಕ್‌ಗಳನ್ನು ಡಾಕ್ಯುಮೆಂಟ್ ಮಾಡಿ.",
+    "research_kn": "ಸಂಶೋಧನಾ ಟಿಪ್ಪಣಿಗಳು\n\nUID: 40185ee1\nನಿರೀಕ್ಷಿತ ಹಂತ: ಮಧ್ಯಮ\nವಿಶ್ವಾಸ: 85.29%\nಅಪಾಯದ ಸ್ಕೋರ್: 95.8%\n\nಮಾದರಿ ಸ್ಟಾಕ್ ಮತ್ತು ತೀರ್ಮಾನ\n- ಸಿಎನ್ಎನ್ ಸಮೂಹ: ಎಫಿಶಿಯೆಂಟ್ ನೆಟ್, ರೆಸ್ನೆಟ್ 50, ವಿಟಿ\n- ಮೆಟಾಡೇಟಾ ಮಾದರಿಗಳು: ರಾಂಡಮ್ ಫಾರೆಸ್ಟ್, XGBoost, ಸ್ಟ್ಯಾಕ್ಡ್ ಸಮಗ್ರ\n- ಫ್ಯೂಷನ್ ವಿಧಾನ: ಅಪಾಯದ ಮಾಪನಾಂಕ ನಿರ್ಣಯದೊಂದಿಗೆ ತೂಕದ ಸರಾಸರಿ\n- ನಿರ್ಣಯ ಸಾಧನ: CPU\n\nವಿವರಣೆ ಮತ್ತು ಗಾಯದ ಪ್ರಮಾಣ:\n- ಮೈಕ್ರೋಅನ್ಯೂರಿಮ್ಸ್: 27.35%\n- ಹೊರಸೂಸುವಿಕೆಗಳು: 2.18%\n- ರಕ್ತಸ್ರಾವಗಳು: 5.48%\n- ಹತ್ತಿ ಉಣ್ಣೆ: 0.00%\n- ನಿಯೋವಾಸ್ಕುಲರೈಸೇಶನ್: 30.00%\n- ಒಟ್ಟು ಲೆಸಿಯಾನ್ ಲೋಡ್: 35.02%\n\nSHAP / ವೈಶಿಷ್ಟ್ಯದ ಪ್ರಾಮುಖ್ಯತೆ: ವ್ಯವಸ್ಥಿತ ವೈಶಿಷ್ಟ್ಯಗಳಿಗಾಗಿ SHAP ಪ್ಲಾಟ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ (HbA1c, BMI, BP).\n\nಸಂಭವನೀಯತೆ ವಾಹಕಗಳು:\n- ಸಿಎನ್‌ಎನ್: [0.012154287658631802, 0.003214231925085187, 0.9691659212112427, 0.004594082478433847, 0.4950741956\n- ML : [0.21136369507961952, 0.20268235745827803, 0.19376393050773666, 0.19047474400645248, 0.202947\n- ಫ್ಯೂಸ್ಡ್: [0.042035698014740136, 0.03313445015833087, 0.8528556072462561, 0.03247618112275847, 0.03394999\n\nಕಾರ್ಯಕ್ಷಮತೆಯ ಮಾಪನಗಳು:\n- ನಿಖರತೆ: 0.947\n- F1-ಸ್ಕೋರ್: 0.938\n- AUC/ROC: 0.971\n\nಸಂಶೋಧನಾ ಶಿಫಾರಸುಗಳು:\n1. ಟಿಪ್ಪಣಿ ಮಾಡಿದ ಮಾಸ್ಕ್‌ಗಳ ವಿರುದ್ಧ ಲೆಸಿಯಾನ್ ಸೆಗ್ಮೆಂಟೇಶನ್ / ಹತ್ತಿ-ಉಣ್ಣೆ ಪತ್ತೆ ಮಾಡುವಿಕೆಯನ್ನು ಮೌಲ್ಯೀಕರಿಸಿ (ಡೈಸ್/ಐಒಯು ವರದಿ ಮಾಡಿ).\n2. ತಪ್ಪು ನಿರಾಕರಣೆಗಳನ್ನು ಗಮನಿಸಿದರೆ ಹತ್ತಿ ಉಣ್ಣೆ-ಸ್ಪಾಟ್ ನಿರ್ದಿಷ್ಟ ವರ್ಧನೆ ಮತ್ತು ಮುಖವಾಡ ಲೇಬಲ್‌ಗಳನ್ನು ಸೇರಿಸಿ.\n3. ವಿವರಿಸಬಹುದಾದ ಮಾಪನಾಂಕ ನಿರ್ಣಯಕ್ಕಾಗಿ ಮಾನವ ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳೊಂದಿಗೆ GradCAM ಹೀಟ್‌ಮ್ಯಾಪ್ ಅತಿಕ್ರಮಣವನ್ನು (IoU) ಅಳೆಯಿರಿ.\n4. ಪ್ರಗತಿಶೀಲ DR ಟ್ರ್ಯಾಕಿಂಗ್ ಮತ್ತು ಮುಂಚಿನ ಎಚ್ಚರಿಕೆ ಸಂಕೇತಗಳಿಗಾಗಿ ತಾತ್ಕಾಲಿಕ ಮಾದರಿಗಳನ್ನು ಪರಿಗಣಿಸಿ."
+  }
+}

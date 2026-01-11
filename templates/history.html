@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VisionAI | Screening History</title>
+
+  <!-- ✅ PWA: Manifest + Service Worker -->
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service_worker.js')
+        .then(() => console.log('✅ VisionAI Service Worker Registered'))
+        .catch(err => console.log('❌ Service Worker Failed:', err));
+    }
+  </script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <h2>📜 Patient Screening History</h2>
+
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>UID</th>
+          <th>Full Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Stage</th>
+          <th>Confidence</th>
+          <th>Risk</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in records %}
+        <tr>
+          <td>{{ r[0] }}</td>
+          <td>{{ r[1] }}</td>
+          <td>{{ r[2] }}</td>
+          <td>{{ r[3] }}</td>
+          <td>{{ r[4] }}</td>
+          <td>{{ r[5] }}%</td>
+          <td>{{ r[6] }}</td>
+          <td>{{ r[7] }}</td>
+          <td><a href="{{ url_for('result_page', uid=r[0]) }}">View</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VisionAI | Screening History</title>
+
+  <!-- ✅ PWA: Manifest + Service Worker -->
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service_worker.js')
+        .then(() => console.log('✅ VisionAI Service Worker Registered'))
+        .catch(err => console.log('❌ Service Worker Failed:', err));
+    }
+  </script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <h2>📜 Patient Screening History</h2>
+
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>UID</th>
+          <th>Full Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Stage</th>
+          <th>Confidence</th>
+          <th>Risk</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in records %}
+        <tr>
+          <td>{{ r[0] }}</td>
+          <td>{{ r[1] }}</td>
+          <td>{{ r[2] }}</td>
+          <td>{{ r[3] }}</td>
+          <td>{{ r[4] }}</td>
+          <td>{{ r[5] }}%</td>
+          <td>{{ r[6] }}</td>
+          <td>{{ r[7] }}</td>
+          <td>
+            <a href="{{ url_for('result_page', uid=r[0]) }}">View</a>
+            <a href="{{ url_for('report_view') }}?uid={{ r[0] }}" style="margin-left:8px;color:#0077b6;font-weight:600;text-decoration:none;">
+              📄 Report
+            </a>
+          </td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

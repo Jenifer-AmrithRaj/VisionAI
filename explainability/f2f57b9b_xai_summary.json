@@ -1,0 +1,78 @@
+{
+  "uid": "f2f57b9b",
+  "metadata": {
+    "Full_Name": "solomon",
+    "Age": "78",
+    "Gender": "Male",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "235",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 83.6,
+    "risk_score": 95.42
+  },
+  "probs": {
+    "cnn": [
+      0.01661859080195427,
+      0.009372644126415253,
+      0.012959725223481655,
+      0.9499325752258301,
+      0.011116418056190014
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.04583035825762507,
+      0.03836910264489016,
+      0.04008035760254893,
+      0.8360139336333661,
+      0.03970624786156982
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 4.293,
+    "hemorrhages": 2.505,
+    "cotton_wool": 0.0,
+    "microaneurysms": 17.095,
+    "neovascularization": 25.0,
+    "total_lesion_load": 23.893
+  },
+  "images": {
+    "original": "uploads\\f2f57b9b.png",
+    "processed": "static\\processed_images\\f2f57b9b_processed.png",
+    "gradcam": "static/xai_outputs/f2f57b9b_gradcam.jpg",
+    "lime": "static/xai_outputs/f2f57b9b_lime.png",
+    "shap": "static/xai_outputs/f2f57b9b_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-12T05:19:40.637481+00:00",
+  "reports": {
+    "patient_en": "👋 Hello solomon,\n\nDetected Stage: Severe\nModel Confidence: 0.0%\nEstimated Risk Score: 0.0%\n\nFindings: exudates 4.3%, hemorrhages 2.5%, cotton wool 0.0%, microaneurysms 17.1%, neovascularization 25.0%, total lesion load 23.9%\nYour health factors: smoking, high blood pressure, obesity (BMI ≥ 30)\n\nSevere changes detected; immediate eye specialist visit advised to prevent vision loss.\n\nNext steps: Arrange urgent evaluation to confirm findings.\n✨ Remember — early action protects your vision!",
+    "doctor_en": "Patient: solomon\nPredicted Stage: Severe\nConfidence: N/A, AUC: 0.97, Risk Score: 0.0%\n\nAutomated Lesion Summary: exudates 4.3%, hemorrhages 2.5%, cotton wool 0.0%, microaneurysms 17.1%, neovascularization 25.0%, total lesion load 23.9%\n\nInterpretation: Widespread hemorrhages, venous beading — likely severe NPDR.\nRecommendation: Urgent ophthalmology referral.\nReview explainability overlays (GradCAM / LIME / SHAP) for verification.",
+    "research_en": "Research Case UID: N/A\nStage: Severe\nModel Confidence: N/A, AUC: 0.971, Risk Score: 0.0%\n\nLesion Summary: exudates 4.3%, hemorrhages 2.5%, cotton wool 0.0%, microaneurysms 17.1%, neovascularization 25.0%, total lesion load 23.9%\n\nRemarks: High lesion ratio consistent with NPDR severity threshold.\n\nRecommended research actions:\n- Validate lesion segmentation accuracy.\n- Compare GradCAM/LIME activation patterns to ground truth masks.\n- Include this case for dataset class balance improvement.",
+    "patient_kn": "",
+    "doctor_kn": "",
+    "research_kn": ""
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "uid": "222ef4c2",
+  "metadata": {
+    "Full_Name": "Jenifer",
+    "Age": "56",
+    "Gender": "Female",
+    "Systolic": "180",
+    "Diastolic": "110",
+    "Glucose_Level": "376",
+    "BMI": "30.8",
+    "Duration": "16",
+    "Smoking": "Yes",
+    "Hypertension": "Yes",
+    "Family_History": "Yes",
+    "Cholesterol": "230",
+    "HbA1c": "8.6",
+    "Insulin_Use": "Yes",
+    "Physical_Activity": "1",
+    "Medication": "Yes"
+  },
+  "prediction": {
+    "predicted_stage": "SEVERE",
+    "confidence": 80.13,
+    "risk_score": 95.39
+  },
+  "probs": {
+    "cnn": [
+      0.016897005960345268,
+      0.011039335280656815,
+      0.023296760395169258,
+      0.9091289639472961,
+      0.03963790461421013
+    ],
+    "ml": [
+      0.21136369507961952,
+      0.20268235745827803,
+      0.19376393050773666,
+      0.19047474400645248,
+      0.20171527294791336
+    ],
+    "fused": [
+      0.046067010495204716,
+      0.03978578961515259,
+      0.048866837149947814,
+      0.8013308512554619,
+      0.06394951148423299
+    ]
+  },
+  "lesion_stats": {
+    "exudates": 10.344,
+    "hemorrhages": 9.241,
+    "cotton_wool": 0.0,
+    "lesion_percentage": 19.585
+  },
+  "images": {
+    "original": "uploads\\222ef4c2.png",
+    "processed": "static\\processed_images\\222ef4c2_processed.png",
+    "gradcam": "static/xai_outputs/222ef4c2_gradcam.jpg",
+    "lime": "static/xai_outputs/222ef4c2_lime.png",
+    "shap": "static/xai_outputs/222ef4c2_shap.png"
+  },
+  "model_metrics": {
+    "Accuracy": 0.947,
+    "F1-score": 0.938,
+    "AUC/ROC": 0.971
+  },
+  "generated_at": "2025-11-11T06:56:07.895848+00:00",
+  "reports": {
+    "patient_en": "👁️ Dear Jenifer,\n\nI’ve carefully analyzed your retinal image and observed early signs consistent with **SEVERE diabetic retinopathy**.\nThe AI model is 80.13% confident in this prediction, and your overall retinal health risk score is **95.39%**.\n\n🩺 Here’s what you should know:\n- Maintain regular follow-ups with your eye specialist.\n- Keep your blood sugar and pressure under control.\n- Stay active, eat healthy (green vegetables, fewer sweets, more fibre).\n- If you experience blurred vision, floaters, or pain — visit your doctor promptly.\n\n🌿 Lifestyle advice:\nMaintain consistent sleep, stay hydrated, avoid smoking, and reduce stress.\nRemember, early care can prevent complications and protect your eyesight.\n\nYours sincerely,  \n**VisionAI — your digital eye health companion.**",
+    "doctor_en": "🧠 Clinical Report – For Ophthalmologist\n\nPredicted Stage: **SEVERE**\nModel Confidence: 80.13%  \nRisk Score: 95.39%  \n\nModel Insights:\n• Multi-model fusion (EfficientNet, ResNet50, ViT, RF, XGB)\n• Explainability overlays (GradCAM++, LIME, SHAP) confirm lesion localization.\n• Lesion summary extracted with threshold-based segmentation.\n\nClinical Correlation:\n• Lesion statistics align with early vascular leakage and microaneurysm regions.\n• Gradient-based heatmaps confirm probable DR zones.\n• Suggested correlation with HbA1c and fundus angiography if available.\n\nMetrics:\n• Accuracy: 0.947\n• F1-score: 0.938\n• AUC/ROC: 0.971\n\nRecommendation:\nReview overlays before confirming DR stage.  \nEncourage metabolic control, lipid management, and follow-up OCT if indicated.",
+    "research_en": "📊 VisionAI Research Report\n\nUID: 222ef4c2\nPredicted Stage: SEVERE\nConfidence: 80.13%  \nRisk Score: 95.39%  \n\nModel Stack:\n• CNN Ensemble: EfficientNet, ResNet50, ViT\n• Metadata models: Random Forest, XGBoost, Stacked Ensemble\n• Fusion: weighted averaging with risk-adjusted calibration\n• Device used: CPU\n\nExplainability Summary:\nGradCAM++ and LIME indicate strong attention on exudate and hemorrhage regions.\nSHAP importance confirms HbA1c, BMI, and blood pressure as key systemic correlates.\n\nPerformance Metrics:\n• Accuracy: 0.947\n• F1-score: 0.938\n• AUC/ROC: 0.971\n\nProbability Vector (fused model): [0.046067010495204716, 0.03978578961515259, 0.048866837149947814, 0.8013308512554619, 0.06394951148423299]\n\nResearch Notes:\n• Validate lesion segmentation agreement against expert annotation.\n• Evaluate multimodal temporal tracking for progressive DR detection.",
+    "patient_kn": "ಹಲೋ ಜೆನಿಫರ್,\n\nತೀವ್ರ ಮಧುಮೇಹ ಬದಲಾವಣೆಗಳು ಕಂಡುಬರುತ್ತವೆ. ಶೀಘ್ರದಲ್ಲೇ ನಿಮ್ಮ ಕಣ್ಣಿನ ವೈದ್ಯರನ್ನು ಭೇಟಿ ಮಾಡುವುದು ಮುಖ್ಯ.\n\nಪತ್ತೆಯಾದ ಹಂತ: ತೀವ್ರ ಡಯಾಬಿಟಿಕ್ ರೆಟಿನೋಪತಿ.\n\nಸಂಶೋಧನೆಗಳ ಸಾರಾಂಶ: ಹೊರಸೂಸುವಿಕೆ 10.3%, ರಕ್ತಸ್ರಾವಗಳು 9.2%, ಹತ್ತಿ ಉಣ್ಣೆ 0.0%, ಲೆಸಿಯಾನ್ ಶೇಕಡಾವಾರು 19.6%.\nಮಾದರಿ ವಿಶ್ವಾಸ: N/A.\nಅಪಾಯಕಾರಿ ಅಂಶಗಳನ್ನು ಗಮನಿಸಲಾಗಿದೆ: ಧೂಮಪಾನ, ಅಧಿಕ ರಕ್ತದೊತ್ತಡ, ಬೊಜ್ಜು (BMI ≥30).\n\nಮುಂದಿನ ಹಂತಗಳು: ಹೆಚ್ಚಿನ ಮೌಲ್ಯಮಾಪನಕ್ಕಾಗಿ ನೇತ್ರಶಾಸ್ತ್ರದ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಅನ್ನು ಆದಷ್ಟು ಬೇಗ ಕಾಯ್ದಿರಿಸಿ.\n\nನೆನಪಿಡಿ - ಆರಂಭಿಕ ಗಮನವು ನಿಮ್ಮ ದೃಷ್ಟಿಯನ್ನು ಸಂರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. 💙",
+    "doctor_kn": "ಜೆನಿಫರ್‌ಗಾಗಿ VisionAI ಕ್ಲಿನಿಕಲ್ ವರದಿ (ವಯಸ್ಸು: 56, BMI: 30.8)\n\nಹಂತ: ತೀವ್ರ ಡಯಾಬಿಟಿಕ್ ರೆಟಿನೋಪತಿ.\nಸಾರಾಂಶ: ವ್ಯಾಪಕವಾದ ರಕ್ತಸ್ರಾವಗಳು ಮತ್ತು ಸಿರೆಯ ಮಣಿಗಳು - ಸಂಭವನೀಯ ತೀವ್ರ NPDR.\nಸ್ವಯಂಚಾಲಿತ ಲೆಸಿಯಾನ್ ವಿಶ್ಲೇಷಣೆ: ಹೊರಸೂಸುವಿಕೆ 10.3%, ರಕ್ತಸ್ರಾವಗಳು 9.2%, ಹತ್ತಿ ಉಣ್ಣೆ 0.0%, ಲೆಸಿಯಾನ್ ಶೇಕಡಾವಾರು 19.6%.\nವಿಶ್ವಾಸ: N/A, AUC: N/A.\nವ್ಯವಸ್ಥಿತ ಅಪಾಯಗಳನ್ನು ಗುರುತಿಸಲಾಗಿದೆ: ಧೂಮಪಾನ, ಅಧಿಕ ರಕ್ತದೊತ್ತಡ, ಬೊಜ್ಜು (BMI ≥30).\n\nಶಿಫಾರಸು: ತುರ್ತು ನೇತ್ರಶಾಸ್ತ್ರದ ಉಲ್ಲೇಖ; ವ್ಯವಸ್ಥಿತ ಆಪ್ಟಿಮೈಸೇಶನ್.\n\nಗಮನಿಸಿ: ಕ್ಲಿನಿಕಲ್ ಸಂಶೋಧನೆಗಳು ಮತ್ತು ರೋಗಿಯ ಇತಿಹಾಸದೊಂದಿಗೆ ಪರಸ್ಪರ ಸಂಬಂಧಿಸಿ. ಲಭ್ಯವಿದ್ದರೆ Grad-CAM ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    "research_kn": "ವಿಷಯ: ಜೆನಿಫರ್\nನಿರೀಕ್ಷಿತ ಹಂತ: ತೀವ್ರ\nಗಾಯದ ಸಾರಾಂಶ: ಹೊರಸೂಸುವಿಕೆ 10.3%, ರಕ್ತಸ್ರಾವಗಳು 9.2%, ಹತ್ತಿ ಉಣ್ಣೆ 0.0%, ಗಾಯದ ಶೇಕಡಾವಾರು 19.6%\nಮಾದರಿ ವಿಶ್ವಾಸ: N/A, AUC: N/A, GradCAM: ಲಭ್ಯವಿಲ್ಲ\n\nವಿಶ್ಲೇಷಣಾತ್ಮಕ ಟಿಪ್ಪಣಿಗಳು: ಹೆಚ್ಚಿನ ಲೆಸಿಯಾನ್ ಸಾಂದ್ರತೆ ಮತ್ತು ಹೀಟ್‌ಮ್ಯಾಪ್ ಕವರೇಜ್; ತೀವ್ರ NPDR ಸಂಭವನೀಯತೆಯ ಕರ್ವ್‌ಗೆ ಹೊಂದಿಕೆಯಾಗುವ ಮಾದರಿ.\n\nಸಂಶೋಧನಾ ಶಿಫಾರಸುಗಳು:\n- ಪರಿಣಿತ ಮುಖವಾಡದೊಂದಿಗೆ ಲೆಸಿಯಾನ್ ಸೆಗ್ಮೆಂಟೇಶನ್ ಅತಿಕ್ರಮಣವನ್ನು ಮೌಲ್ಯೀಕರಿಸಿ.\n- ಹಂತದ ಸಮತೋಲನವನ್ನು ಸುಧಾರಿಸಲು ಮುಂದಿನ ಮರುತರಬೇತಿ ಬ್ಯಾಚ್‌ನಲ್ಲಿ ಸೇರಿಸಿ.\n- ಮಾನವ ಗ್ರೇಡಿಂಗ್ ಹೀಟ್‌ಮ್ಯಾಪ್‌ಗಳ ವಿರುದ್ಧ GradCAM ಪ್ರದೇಶದ ನಿಷ್ಠೆಯನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿ."
+  }
+}

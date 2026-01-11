@@ -1,0 +1,117 @@
+<!-- File: templates/index.html
+     Purpose: Landing / PWA entry for VisionAI
+     Notes: Works perfectly with Flask static paths
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VisionAI — Smartphone DR Screening</title>
+
+  <!-- ✅ PWA: Manifest + Service Worker -->
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service_worker.js')
+        .then(() => console.log('✅ VisionAI Service Worker Registered'))
+        .catch(err => console.log('❌ Service Worker Failed:', err));
+    }
+  </script>
+
+  <!-- Theme color (used for address bar on mobile) -->
+  <meta name="theme-color" content="#00b4d8" />
+
+  <!-- Fallback favicon / icon -->
+  <link rel="icon" href="{{ url_for('static', filename='icons/icon-192x192.png') }}" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+
+  <meta name="description" content="VisionAI — AI-powered smartphone retinal screening for early detection of Diabetic Retinopathy. Installable PWA with explainable AI and automatic PDF reports." />
+</head>
+<body class="page">
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="VisionAI home">
+        <img src="{{ url_for('static', filename='visionai_logo.png') }}" alt="VisionAI logo" class="logo" />
+        <div class="brand-text">
+          <h1 class="app-title">VisionAI</h1>
+          <p class="tagline">AI-Powered Smartphone Retinal Screening</p>
+        </div>
+      </a>
+
+      <nav class="nav" role="navigation" aria-label="Primary">
+        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        <a class="btn btn-primary" href="{{ url_for('upload_page') }}" id="start-screening-btn">Start Screening</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero" role="main">
+    <div class="container hero-inner">
+      <section class="hero-left" aria-labelledby="hero-heading">
+        <h2 id="hero-heading" class="hero-title">Early detection of Diabetic Retinopathy using your smartphone</h2>
+        <p class="lead">
+          VisionAI performs fast, explainable retinal screening from smartphone fundus photos.
+          It combines an ensemble of CNNs (EfficientNet-B0, ResNet-50, ViT) and metadata models to produce a fused, high-confidence diagnosis.
+        </p>
+
+        <ul class="features">
+          <li><strong>Real-time screening</strong> — Upload or capture fundus images and get instant results.</li>
+          <li><strong>Explainable</strong> — Grad-CAM++, LIME, and SHAP visualizations aid clinical review.</li>
+          <li><strong>Multi-report</strong> — Auto-generate Patient, Doctor, and Research PDFs.</li>
+          <li><strong>Installable PWA</strong> — Use offline to view reports and history on any device.</li>
+        </ul>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary large" href="{{ url_for('upload_page') }}">Start Screening</a>
+          <a class="btn btn-outline" href="{{ url_for('history') }}">View History</a>
+        </div>
+
+        <p class="credit">Developed by Jennifer &amp; Team</p>
+      </section>
+
+      <aside class="hero-right">
+        <div class="device-card" id="install-card">
+          <div class="device-screenshot">
+            <img src="{{ url_for('static', filename='icons/icon-512x512.png') }}" alt="VisionAI icon" />
+          </div>
+          <div class="device-copy">
+            <p class="mock-caption">Install VisionAI for quick offline retinal screening.</p>
+            <button id="install-btn" class="btn btn-secondary" aria-label="Install VisionAI">Install App</button>
+          </div>
+        </div>
+
+        <div class="tips">
+          <h4>Quick Tips for Clear Fundus Captures</h4>
+          <ol>
+            <li>Center the optic disc and macula clearly.</li>
+            <li>Avoid reflections and ensure proper lighting.</li>
+            <li>Use a 20D lens and capture multiple angles if possible.</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="left">
+        <small>© VisionAI — Mobile Retinal Screening • Version 1.0</small>
+      </div>
+      <div class="right">
+        <small>Contact: visionai@example.org</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App JS -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

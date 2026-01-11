@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VisionAI | Doctor Login</title>
+
+  <!-- ✅ PWA Manifest + Service Worker -->
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service_worker.js')
+        .then(() => console.log('✅ VisionAI Service Worker Registered'))
+        .catch(err => console.log('❌ Service Worker Failed:', err));
+    }
+  </script>
+
+  <style>
+    :root {
+      --brand-1: #0077b6;
+      --brand-2: #0096c7;
+      --bg-light: #eaf7ff;
+      --text-dark: #08364a;
+      --muted: #7a9fb6;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, var(--bg-light), #f9fdff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .login-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(3, 54, 80, 0.15);
+      width: 380px;
+      padding: 2.4rem;
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-card::before {
+      content: "";
+      position: absolute;
+      top: -70px;
+      right: -70px;
+      width: 220px;
+      height: 220px;
+      background: url('{{ url_for("static", filename="visionai_logo.png") }}') no-repeat center/contain;
+      opacity: 0.06;
+      transform: rotate(-15deg);
+    }
+
+    .logo {
+      width: 90px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 10px rgba(0,119,182,0.3));
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    h2 {
+      color: var(--brand-1);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #cde7f7;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 1rem;
+      background: #f9fdff;
+      transition: border-color 0.3s ease;
+    }
+
+    .field:focus-within {
+      border-color: var(--brand-2);
+    }
+
+    .field input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .toggle-pass {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+      color: white;
+      border: none;
+      padding: 0.9rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,119,182,0.3);
+    }
+
+    .alert {
+      background: #ffe6e6;
+      color: #b30000;
+      padding: 0.6rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    /* Overlay Loader */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .overlay-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(3, 54, 80, 0.2);
+      animation: pop 0.5s ease forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .spinner {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 3px solid rgba(0,119,182,0.2);
+      border-top-color: #0077b6;
+      animation: spin 0.8s linear infinite;
+      margin: 10px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-card">
+    <img src="{{ url_for('static', filename='visionai_logo.png') }}" class="logo" alt="VisionAI Logo">
+    <h2>Doctor Login</h2>
+
+    <div id="alertBox" class="alert">Invalid credentials. Please try again.</div>
+
+    <form id="loginForm" onsubmit="return false;">
+      <div class="field">
+        <input type="text" id="username" placeholder="Username" required>
+      </div>
+
+      <div class="field">
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="button" class="toggle-pass" id="togglePass">👁️</button>
+      </div>
+
+      <button class="btn" id="loginBtn">Sign In</button>
+    </form>
+  </div>
+
+  <div class="overlay" id="loginOverlay">
+    <div class="overlay-content">
+      <img src="{{ url_for('static', filename='visionai_logo.png') }}" alt="VisionAI" style="width:80px;margin-bottom:10px;">
+      <h3>Authenticating...</h3>
+      <p>Logging you into VisionAI...</p>
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle password visibility
+    document.getElementById('togglePass').addEventListener('click', () => {
+      const input = document.getElementById('password');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      document.getElementById('togglePass').textContent = input.type === 'password' ? '👁️' : '🙈';
+    });
+
+    // Login button logic
+    document.getElementById('loginBtn').addEventListener('click', async function() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const alertBox = document.getElementById('alertBox');
+      const overlay = document.getElementById('loginOverlay');
+
+      if (!username || !password) {
+        alert('Please enter both username and password.');
+        return;
+      }
+
+      overlay.classList.add('show');
+
+      try {
+        const res = await fetch('{{ url_for("login") }}', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          document.querySelector('.overlay-content h3').textContent = "Welcome!";
+          document.querySelector('.overlay-content p').textContent = "Preparing your VisionAI dashboard...";
+          setTimeout(() => {
+            // ✅ Correct redirect to your real dashboard
+            window.location.href = "{{ url_for('home') }}";
+          }, 1500);
+        } else {
+          overlay.classList.remove('show');
+          alertBox.style.display = 'block';
+        }
+      } catch (err) {
+        overlay.classList.remove('show');
+        alert('Server error. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
