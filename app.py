@@ -36,13 +36,10 @@ from utils.auth_utils import validate_user
 
 def run_full_pipeline(uid, img_path, meta):
     try:
-        print(f"🧠 Background pipeline started for UID {uid}")
+        DEVICE = "cpu"
 
-        DEVICE = "cpu"  # Render-safe
-
-        # ---------------- LOAD MODELS ----------------
+        # Load models (safe for Render)
         cnn_models = load_cnn_models(device=DEVICE)
-
         ml_models = {
             "rf": joblib.load("modelss/randomforest_model.pkl"),
             "xgb": joblib.load("modelss/xgboost_model.pkl"),
@@ -50,71 +47,58 @@ def run_full_pipeline(uid, img_path, meta):
         }
         scaler = joblib.load("modelss/scaler.pkl")
 
-        # ---------------- CNN ----------------
+        # CNN
         cnn_probs, cnn_pred, cnn_conf = predict_cnn(
             cnn_models, img_path, device=DEVICE
         )
 
-        # ---------------- ML ----------------
+        # ML
         numeric_meta = {
             k: v for k, v in meta.items()
             if str(v).replace(".", "", 1).isdigit()
         }
-
-        _, ml_avg = predict_metadata_ml(
-            numeric_meta, ml_models, scaler
-        )
+        _, ml_avg = predict_metadata_ml(numeric_meta, ml_models, scaler)
         ml_probs = np.array(ml_avg)
 
-        # ---------------- FUSION ----------------
-        fused, label, conf, risk = fuse_predictions(
-            cnn_probs, ml_probs
-        )
+        # Fusion
+        fused, label, conf, risk = fuse_predictions(cnn_probs, ml_probs)
 
-        # ---------------- PATHS ----------------
-        gradcam_path = os.path.join(EXPLAIN_DIR, "gradcam", f"{uid}_gradcam.jpg")
-        lime_path = os.path.join(EXPLAIN_DIR, "lime", f"{uid}_lime.png")
-        shap_path = os.path.join(EXPLAIN_DIR, "shap", f"{uid}_shap.png")
+        # XAI paths
+        gradcam = os.path.join(EXPLAIN_DIR, "gradcam", f"{uid}.jpg")
+        lime = os.path.join(EXPLAIN_DIR, "lime", f"{uid}.png")
+        shap = os.path.join(EXPLAIN_DIR, "shap", f"{uid}.png")
 
-        for p in [gradcam_path, lime_path, shap_path]:
+        for p in [gradcam, lime, shap]:
             os.makedirs(os.path.dirname(p), exist_ok=True)
 
-        gradcam_web = ""
-        lime_web = ""
-        shap_web = ""
-
-        # ---------------- XAI + LESIONS ----------------
         if label != "NO_DR":
-            generate_gradcam_image(
-                cnn_models["efficientnet"], img_path, gradcam_path
-            )
-            generate_lime_image(
-                cnn_models["efficientnet"], img_path, lime_path
-            )
+            generate_gradcam_image(cnn_models["efficientnet"], img_path, gradcam)
+            generate_lime_image(cnn_models["efficientnet"], img_path, lime)
             generate_shap_plot(
                 ml_models.get("ensemble") or ml_models["rf"],
                 meta,
-                shap_path
+                shap
             )
-
             lesion_stats = calculate_lesion_stats(img_path)
-
-            gradcam_web = _copy_to_static(gradcam_path, uid, "gradcam")
-            lime_web = _copy_to_static(lime_path, uid, "lime")
-            shap_web = _copy_to_static(shap_path, uid, "shap")
         else:
             lesion_stats = {}
 
-        # ---------------- FINAL SUMMARY ----------------
+        # Copy to static so HTML can see them
+        def to_static(src, name):
+            if not os.path.exists(src):
+                return ""
+            dst = os.path.join(STATIC_XAI_DIR, f"{uid}_{name}{os.path.splitext(src)[1]}")
+            os.makedirs(STATIC_XAI_DIR, exist_ok=True)
+            copyfile(src, dst)
+            return f"static/xai_outputs/{uid}_{name}{os.path.splitext(src)[1]}"
+
         summary = {
             "uid": uid,
             "metadata": meta,
             "prediction": {
                 "predicted_stage": label,
-                "confidence": round(float(conf) * 100, 2),
-                "risk_score": round(
-                    1.0 if label == "NO_DR" else float(risk) * 100, 2
-                )
+                "confidence": round(conf * 100, 2),
+                "risk_score": round(risk * 100, 2)
             },
             "probs": {
                 "cnn": cnn_probs.tolist(),
@@ -124,33 +108,22 @@ def run_full_pipeline(uid, img_path, meta):
             "lesion_stats": lesion_stats,
             "images": {
                 "original": img_path,
-                "gradcam": gradcam_web,
-                "lime": lime_web,
-                "shap": shap_web
-            },
-            "model_metrics": {
-                "Accuracy": 0.947,
-                "F1-score": 0.938,
-                "AUC/ROC": 0.971
+                "gradcam": to_static(gradcam, "gradcam"),
+                "lime": to_static(lime, "lime"),
+                "shap": to_static(shap, "shap")
             },
             "generated_at": datetime.now(timezone.utc).isoformat()
         }
 
-        with open(
-            os.path.join(EXPLAIN_DIR, f"{uid}_xai_summary.json"),
-            "w"
-        ) as f:
+        with open(os.path.join(EXPLAIN_DIR, f"{uid}_xai_summary.json"), "w") as f:
             json.dump(summary, f, indent=2)
 
-        # ---------------- REPORTS ----------------
         generate_reports_for_uid(uid, language_mode="bilingual")
 
-        log_patient_record(uid, meta, summary["prediction"])
-
-        print(f"✅ Background pipeline completed for UID {uid}")
+        print("✅ Pipeline finished", uid)
 
     except Exception as e:
-        print(f"❌ Background pipeline failed for UID {uid}: {e}")
+        print("❌ Pipeline failed:", e)
 
 # ---------------------------------------------------------------------
 # Flask Setup
@@ -379,8 +352,8 @@ def predict():
 
     meta = dict(request.form)
 
-    # ---- STEP 1: Save placeholder (FAST, prevents 502) ----
-    summary = {
+    # 1️⃣ Create placeholder so result page loads
+    placeholder = {
         "uid": uid,
         "metadata": meta,
         "prediction": {
@@ -388,11 +361,7 @@ def predict():
             "confidence": 0.0,
             "risk_score": 0.0
         },
-        "probs": {
-            "cnn": [],
-            "ml": [],
-            "fused": []
-        },
+        "probs": {"cnn": [], "ml": [], "fused": []},
         "lesion_stats": {},
         "images": {
             "original": img_path,
@@ -401,15 +370,14 @@ def predict():
             "lime": "",
             "shap": ""
         },
-        "model_metrics": {},
         "generated_at": datetime.now(timezone.utc).isoformat()
     }
 
     os.makedirs(EXPLAIN_DIR, exist_ok=True)
     with open(os.path.join(EXPLAIN_DIR, f"{uid}_xai_summary.json"), "w") as f:
-        json.dump(summary, f, indent=2)
+        json.dump(placeholder, f, indent=2)
 
-    # ---- STEP 2: RUN FULL PIPELINE IN BACKGROUND ----
+    # 2️⃣ START REAL PIPELINE IN BACKGROUND  ✅ THIS WAS MISSING
     Thread(
         target=run_full_pipeline,
         args=(uid, img_path, meta),
