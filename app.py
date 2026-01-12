@@ -378,37 +378,8 @@ def predict():
 
     meta = dict(request.form)
 
-    # 1️⃣ Create placeholder so result page loads
-    placeholder = {
-        "uid": uid,
-        "metadata": meta,
-        "prediction": {
-            "predicted_stage": "ANALYSIS_PENDING",
-            "confidence": 0.0,
-            "risk_score": 0.0
-        },
-        "probs": {"cnn": [], "ml": [], "fused": []},
-        "lesion_stats": {},
-        "images": {
-            "original": img_path,
-            "processed": "",
-            "gradcam": "",
-            "lime": "",
-            "shap": ""
-        },
-        "generated_at": datetime.now(timezone.utc).isoformat()
-    }
-
-    os.makedirs(EXPLAIN_DIR, exist_ok=True)
-    with open(os.path.join(EXPLAIN_DIR, f"{uid}_xai_summary.json"), "w") as f:
-        json.dump(placeholder, f, indent=2)
-
-    # 2️⃣ START REAL PIPELINE IN BACKGROUND  ✅ THIS WAS MISSING
-    Thread(
-        target=run_full_pipeline,
-        args=(uid, img_path, meta),
-        daemon=True
-    ).start()
+    # 🚨 RUN PIPELINE SYNCHRONOUSLY (RENDER SAFE)
+    run_full_pipeline(uid, img_path, meta)
 
     return redirect(url_for("result_page", uid=uid))
 
