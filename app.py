@@ -36,10 +36,15 @@ from utils.auth_utils import validate_user
 
 def run_full_pipeline(uid, img_path, meta):
     try:
+        print("🧠 Background pipeline started:", uid)
+
         DEVICE = "cpu"
 
-        # Load models (safe for Render)
+        # -------------------------------------------------
+        # Load models (Render-safe)
+        # -------------------------------------------------
         cnn_models = load_cnn_models(device=DEVICE)
+
         ml_models = {
             "rf": joblib.load("modelss/randomforest_model.pkl"),
             "xgb": joblib.load("modelss/xgboost_model.pkl"),
@@ -47,83 +52,104 @@ def run_full_pipeline(uid, img_path, meta):
         }
         scaler = joblib.load("modelss/scaler.pkl")
 
-        # CNN
+        # -------------------------------------------------
+        # CNN prediction
+        # -------------------------------------------------
         cnn_probs, cnn_pred, cnn_conf = predict_cnn(
             cnn_models, img_path, device=DEVICE
         )
 
-        # ML
+        # -------------------------------------------------
+        # ML prediction
+        # -------------------------------------------------
         numeric_meta = {
             k: v for k, v in meta.items()
             if str(v).replace(".", "", 1).isdigit()
         }
+
         _, ml_avg = predict_metadata_ml(numeric_meta, ml_models, scaler)
         ml_probs = np.array(ml_avg)
 
+        # -------------------------------------------------
         # Fusion
+        # -------------------------------------------------
         fused, label, conf, risk = fuse_predictions(cnn_probs, ml_probs)
 
-        # XAI paths
-        gradcam = os.path.join(EXPLAIN_DIR, "gradcam", f"{uid}.jpg")
-        lime = os.path.join(EXPLAIN_DIR, "lime", f"{uid}.png")
-        shap = os.path.join(EXPLAIN_DIR, "shap", f"{uid}.png")
+        # -------------------------------------------------
+        # XAI paths (IN PROJECT)
+        # -------------------------------------------------
+        gradcam_path = os.path.join(EXPLAIN_DIR, "gradcam", f"{uid}.jpg")
+        lime_path    = os.path.join(EXPLAIN_DIR, "lime", f"{uid}.png")
+        shap_path    = os.path.join(EXPLAIN_DIR, "shap", f"{uid}.png")
 
-        for p in [gradcam, lime, shap]:
+        for p in [gradcam_path, lime_path, shap_path]:
             os.makedirs(os.path.dirname(p), exist_ok=True)
 
+        lesion_stats = {}
+
         if label != "NO_DR":
-            generate_gradcam_image(cnn_models["efficientnet"], img_path, gradcam)
-            generate_lime_image(cnn_models["efficientnet"], img_path, lime)
+            generate_gradcam_image(cnn_models["efficientnet"], img_path, gradcam_path)
+            generate_lime_image(cnn_models["efficientnet"], img_path, lime_path)
             generate_shap_plot(
                 ml_models.get("ensemble") or ml_models["rf"],
                 meta,
-                shap
+                shap_path
             )
             lesion_stats = calculate_lesion_stats(img_path)
-        else:
-            lesion_stats = {}
 
-        # Copy to static so HTML can see them
+        # -------------------------------------------------
+        # Copy XAI → static (THIS IS WHAT YOUR UI NEEDS)
+        # -------------------------------------------------
         def to_static(src, name):
             if not os.path.exists(src):
                 return ""
-            dst = os.path.join(STATIC_XAI_DIR, f"{uid}_{name}{os.path.splitext(src)[1]}")
             os.makedirs(STATIC_XAI_DIR, exist_ok=True)
+            ext = os.path.splitext(src)[1]
+            dst = os.path.join(STATIC_XAI_DIR, f"{uid}_{name}{ext}")
             copyfile(src, dst)
-            return f"static/xai_outputs/{uid}_{name}{os.path.splitext(src)[1]}"
+            return f"static/xai_outputs/{uid}_{name}{ext}"
 
+        # -------------------------------------------------
+        # FINAL SUMMARY (OVERWRITES PLACEHOLDER)
+        # -------------------------------------------------
         summary = {
             "uid": uid,
             "metadata": meta,
             "prediction": {
                 "predicted_stage": label,
-                "confidence": round(conf * 100, 2),
-                "risk_score": round(risk * 100, 2)
+                "confidence": round(float(conf) * 100, 2),
+                "risk_score": round(float(risk) * 100, 2),
             },
             "probs": {
                 "cnn": cnn_probs.tolist(),
                 "ml": ml_probs.tolist(),
-                "fused": fused.tolist()
+                "fused": fused.tolist(),
             },
             "lesion_stats": lesion_stats,
             "images": {
                 "original": img_path,
-                "gradcam": to_static(gradcam, "gradcam"),
-                "lime": to_static(lime, "lime"),
-                "shap": to_static(shap, "shap")
+                "gradcam": to_static(gradcam_path, "gradcam"),
+                "lime": to_static(lime_path, "lime"),
+                "shap": to_static(shap_path, "shap"),
             },
-            "generated_at": datetime.now(timezone.utc).isoformat()
+            "generated_at": datetime.now(timezone.utc).isoformat(),
         }
 
         with open(os.path.join(EXPLAIN_DIR, f"{uid}_xai_summary.json"), "w") as f:
             json.dump(summary, f, indent=2)
 
+        # -------------------------------------------------
+        # REPORTS (AFTER JSON EXISTS)
+        # -------------------------------------------------
         generate_reports_for_uid(uid, language_mode="bilingual")
 
-        print("✅ Pipeline finished", uid)
+        log_patient_record(uid, meta, summary["prediction"])
+
+        print("✅ Pipeline completed:", uid)
 
     except Exception as e:
-        print("❌ Pipeline failed:", e)
+        print("❌ Pipeline failed:", uid)
+        print(e)
 
 # ---------------------------------------------------------------------
 # Flask Setup
